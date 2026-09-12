@@ -25,10 +25,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Test game and server
-        run: node --test apps/golmok-detective/tests/*.test.mjs
       - name: Build standalone game
         run: node apps/golmok-detective/build.mjs
+      - name: Test game and server
+        run: node --test apps/golmok-detective/tests/*.test.mjs
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload game public files
