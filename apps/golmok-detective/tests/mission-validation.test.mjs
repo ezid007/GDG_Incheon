@@ -4,11 +4,7 @@ import { test } from 'node:test';
 import { validateMissionData } from '../mission-validation.mjs';
 import { initialState, restoreState, transition } from '../game-state.mjs';
 
-<<<<<<< Updated upstream
 const examples = await loadMissionData();
-=======
-const examples = JSON.parse(await readFile(new URL('../data/inhwamun.json', import.meta.url), 'utf8'));
->>>>>>> Stashed changes
 const fieldData = () => {
   const mission = structuredClone(examples.missions[0]);
   mission.sceneKind = 'field';

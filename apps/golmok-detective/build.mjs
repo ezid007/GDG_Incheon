@@ -6,11 +6,7 @@ import {buildMap} from './build-map.mjs';
 import {loadMissionData} from './load-quiz.mjs';
 
 const root=dirname(fileURLToPath(import.meta.url));
-<<<<<<< Updated upstream
 const data=await loadMissionData();
-=======
-const data=JSON.parse(await readFile(join(root,'data/inhwamun.json'),'utf8'));
->>>>>>> Stashed changes
 validateMissionData(data);
 const assets={};
 const imagePaths=new Set(data.missions.flatMap(m=>[m.image,m.quizImage,m.answerImage].filter(path=>path!==undefined)));

@@ -38,11 +38,7 @@ D:
 
 ## 게임 반영과 검증
 
-<<<<<<< Updated upstream
 문제 원본은 `apps/golmok-detective/data/quiz.js`, 검수·표시 정보는 `data/quiz-support.json`이며, 검토된 이미지는 `apps/golmok-detective/public/assets/`에 둔다. `sceneKind: "field"`는 정확히 4개 선택지를, 기존 `example`은 3개 선택지를 받는다. 선택지의 ID·표시는 고유해야 하며 `answerId`는 해당 ID 하나와 정확히 일치해야 한다. `evidence.x`, `evidence.y`는 사진에서 근거를 표시하는 0~100 범위의 백분율이며 GPS 좌표가 아니다.
-=======
-미션 원본은 `apps/golmok-detective/data/inhwamun.json`이며, 검토된 이미지는 `apps/golmok-detective/public/assets/`에 둔다. `sceneKind: "field"`는 정확히 4개 선택지를, 기존 `example`은 3개 선택지를 받는다. 선택지의 ID·표시는 고유해야 하며 `answerId`는 해당 ID 하나와 정확히 일치해야 한다. `evidence.x`, `evidence.y`는 사진에서 근거를 표시하는 0~100 범위의 백분율이며 GPS 좌표가 아니다.
->>>>>>> Stashed changes
 
 탐색 구역과 사진 공개 시점을 확인한 뒤, 미션 순서·선택지·정답을 바꾸면 검수 파일의 최상위 `version`도 갱신한다. 이미지 경로는 `assets/영문소문자-파일명.jpg`와 같은 형식을 사용한다. 지원 형식은 SVG/JPG/JPEG/PNG/WebP다. 빌드 때 사진은 게임 HTML에 내장된다. 정답 데이터도 브라우저에 포함되므로 현장 탐색을 돕는 체험 게임의 용도다.
 
