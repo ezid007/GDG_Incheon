@@ -8,7 +8,11 @@ const fixed = value => Number(value.toFixed(2));
 export async function buildMap(root, data) {
   const config = JSON.parse(await readFile(join(root, 'data/exploration-map.json'), 'utf8'));
   const geography = JSON.parse(await readFile(join(root, 'data/map-geography.json'), 'utf8'));
+<<<<<<< Updated upstream
   const missions = data.missions;
+=======
+  const missions = JSON.parse(await readFile(join(root, 'data/inhwamun.json'), 'utf8')).missions;
+>>>>>>> Stashed changes
   for (const region of config.regions) {
     const mission = missions.find(item => item.sceneKind === 'field' && item.explorationRegionId === region.id);
     region.ready = Boolean(mission);
