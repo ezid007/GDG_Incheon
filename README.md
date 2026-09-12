@@ -2,9 +2,11 @@
 
 사진 속 단서를 찾아 장소의 특징을 발견하는 짧은 모바일 관찰 게임입니다. Agent Field Trip 2026: Incheon에서 만드는 작품으로, 현장에서 관찰한 내용과 게임의 질문·정답 근거를 연결하는 것이 목표입니다.
 
-**[골목탐정 플레이하기](https://machines-ambien-wear-arab.trycloudflare.com/)** — 휴대전화와 PC의 브라우저에서 접속할 수 있는 임시 주소입니다.
+**[골목탐정 플레이하기](https://ezid007.github.io/GDG_Incheon/)** — GitHub Pages에서 제공하며 개발 노트북이 꺼져 있어도 접속할 수 있습니다.
 
-현재는 가상 예시 그림으로 만든 3개 미션을 사용합니다. 실제 현장 사진과 관찰 기록은 아직 반영하지 않았습니다. 주소는 개발 노트북·게임 서버·터널이 켜져 있는 동안 유지됩니다.
+현재 게임은 가상 예시 그림 3미션입니다. 실제 현장 미션은 아직 반영하지 않았습니다. 별도의 [현장 탐색 지도](https://ezid007.github.io/GDG_Incheon/map.html)는 참가자가 보내준 안내판 사진을 확대해 보여줍니다.
+
+팀원은 `main`에 게임 코드를 푸시하면 테스트·빌드 후 자동 배포할 수 있습니다. 수동 실행은 GitHub Actions → **Deploy Golmok Detective → Run workflow → main**입니다. Pages 설정 변경은 개인 저장소 소유자가 담당합니다.
 
 팀원이 추가한 차이나타운 관문 사진·미션 초안은 `raw/missions/`와 [미션 문서](wiki/mission-chinatown-gate.md)에 보존되어 있습니다. 해당 자료는 다음 콘텐츠 반영 대상이며 현재 예시 게임과 구분합니다.
 
@@ -42,7 +44,7 @@ node apps/golmok-detective/serve.mjs --port 4180
 node --test apps/golmok-detective/tests/*.test.mjs
 ```
 
-2026-09-12 현재 상태 로직 검사는 **12개 모두 통과**했습니다. 서버 검사는 **8개 중 6개 통과, 2개 실패**입니다. 실패한 두 검사는 로컬 AdGuard가 HTML 응답의 헤더와 HEAD 응답을 변경하면서 발생했습니다. 서버가 원래 만드는 GET/HEAD 헤더와 본문은 별도 검사에서 정상임을 확인했습니다. 자세한 범위와 남은 검증은 [구현·협업 안내](docs/golmok-detective/implementation.md)에 기록합니다.
+2026-09-12 첫 GitHub Actions 배포에서 **20개 검사 모두 통과**했습니다. 같은 검사의 로컬 실행에서는 AdGuard의 HTML 헤더·HEAD 응답 변경으로 2개가 실패했으며 기록을 유지합니다. 지도 공개 경로 검사 1개를 추가해 로컬 통과도 확인했습니다. 자세한 범위와 남은 검증은 [구현·협업 안내](docs/golmok-detective/implementation.md)에 기록합니다.
 
 ## 동료가 참여할 부분
 

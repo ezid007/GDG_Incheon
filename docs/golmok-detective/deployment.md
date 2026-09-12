@@ -8,11 +8,13 @@
 
 워크플로: `.github/workflows/deploy-pages.yml`. Node 24에서 테스트·빌드 후 `apps/golmok-detective/public`만 업로드한다. 원본 자료·문서·로그는 사이트에 포함하지 않는다. 빌드는 contents:read, 배포는 pages:write와 id-token:write를 사용한다. 개인 API 토큰이나 계정 공유가 필요 없다.
 
-첫 실행의 성공 여부와 공개 URL은 실제 배포 후 이 문서에 갱신한다. 팀원 본인의 세션에서 직접 실행하는 검증은 별도다.
+첫 실행 #1은 테스트20개·빌드·배포 모두 성공했다. [실행 기록](https://github.com/ezid007/GDG_Incheon/actions/runs/34669308422). 아래 공개 URL에서 GET 200과 게임 제목을 확인했다. 팀원 본인의 세션에서 직접 실행하는 검증은 별도다.
+
+**기본 공개 주소: [GitHub Pages 게임](https://ezid007.github.io/GDG_Incheon/)**. 지도는 `/GDG_Incheon/map.html`에 제공한다. 이 주소는 개발 노트북이나 Cloudflare 터널 실행 여부와 관계없이 GitHub Pages에서 제공된다. 변경 반영은 푸시 후 Actions 배포가 성공해야 완료된다.
 
 공식 근거: [개인 저장소 권한](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/repository-access-and-collaboration/permission-levels-for-a-personal-account-repository), [Pages 사용자 정의 워크플로](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages), [쓰기 권한으로 수동 실행](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow).
 
-## 현재 접속 주소
+## 로컬 수정 확인용 임시 주소
 
 [골목탐정 임시 웹](https://machines-ambien-wear-arab.trycloudflare.com)
 
@@ -41,7 +43,7 @@ cloudflared tunnel --url http://127.0.0.1:4179 --no-autoupdate --protocol http2
 
 ## 공개 범위와 백업
 
-서버는 게임 HTML과 명시된 예시 SVG 3개만 제공한다. 작업 문서, 로그, 인증 자료, 사진 원본, 첨부 디렉터리는 제공하지 않는다. HTML 자체에 그림·데이터·코드를 포함해 내려받은 파일로도 플레이할 수 있다.
+서버는 게임 HTML, 지도 HTML과 명시된 예시 SVG 3개만 제공한다. 작업 문서, 로그, 인증 자료, 첨부 디렉터리는 제공하지 않는다. 지도 HTML에는 사용자가 활용을 요청한 안내판 사진만 내장한다. 각 HTML에 필요한 그림·데이터·코드를 포함해 내려받은 파일로도 볼 수 있다.
 
 제출 백업으로 작동 화면 녹화/캡처와 소스를 준비한다. 현장 휴대전화에서 재생 가능한지 확인한다. Drive 보관과 웹 공개는 별개다.
 

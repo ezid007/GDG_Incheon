@@ -15,6 +15,7 @@ before(async () => {
   root = await mkdtemp(join(tmpdir(), 'golmok-server-test-'));
   await mkdir(join(root, 'assets'));
   await writeFile(join(root, 'index.html'), '<!doctype html><h1>골목탐정</h1>');
+  await writeFile(join(root, 'map.html'), '<!doctype html><h1>탐색 지도</h1>');
   for (const name of ['window', 'sign', 'direction']) {
     await writeFile(join(root, 'assets', `example-${name}.svg`), '<svg xmlns="http://www.w3.org/2000/svg"></svg>');
   }
@@ -84,6 +85,13 @@ test('all three reviewed illustrations are served with SVG MIME type', async () 
     assert.match(result.headers['content-type'], /^image\/svg\+xml; charset=utf-8$/);
     assert.match(result.body, /^<svg/);
   }
+});
+
+test('the standalone map is available at its explicit public route', async () => {
+  const result = await request('/map.html');
+  assert.equal(result.status, 200);
+  assert.match(result.headers['content-type'], /^text\/html; charset=utf-8$/);
+  assert.match(result.body, /탐색 지도/);
 });
 
 test('POST is refused with an explicit Allow header', async () => {
