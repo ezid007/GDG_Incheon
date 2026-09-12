@@ -1,4 +1,5 @@
 {
+  "$schema": "./quiz-support.schema.json",
   "version": "scroll-pinocchio-v1",
   "title": "차이나타운 골목탐정",
   "reviews": [
