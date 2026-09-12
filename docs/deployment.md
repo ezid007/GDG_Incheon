@@ -1,6 +1,6 @@
 # 실행과 임시 공개
 
-확인일: 2026-09-12 · 게임 버전: example-v1 · Node.js 표준 모듈만 사용
+확인일: 2026-09-12 · 게임 버전: unified-v1 · Node.js 표준 모듈만 사용
 
 ## 팀원 GitHub Pages 배포
 
@@ -20,7 +20,7 @@
 
 [골목탐정 임시 웹](https://machines-ambien-wear-arab.trycloudflare.com)
 
-Cloudflare Quick Tunnel을 통해 공개하는 개발용 HTTPS 주소다. 앱 로그인 없이 주소로 플레이할 수 있다. 게임은 가상 예시 3미션이며 실제 현장 자료는 아직 반영하지 않았다.
+초기 개발 때 사용한 Cloudflare Quick Tunnel 주소다. 현재 유지 여부는 확인하지 않았으므로 제출·공유에는 위 GitHub Pages 주소를 사용한다. 현재 게임에는 검수된 현장 문제 1개가 반영되어 있다.
 
 개발 노트북·게임 서버·터널이 실행 중이어야 한다. 터널을 다시 시작하면 주소가 바뀔 수 있다. 영구 배포·가용성 보장이 아니며 최종 제출 시 운영진의 공개 기간 조건을 확인한다.
 
@@ -61,7 +61,7 @@ cloudflared tunnel --url http://127.0.0.1:4179 --no-autoupdate --protocol http2
 
 출처: [Cloudflare Quick Tunnels 공식 문서](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/do-more-with-tunnels/trycloudflare/). 개발·테스트 용도이고 가용성 보장이 없다.
 
-## 2026-09-12 두 단계 현장 퀴즈 업데이트
+## 이전 배포 기록 · 두 단계 현장 퀴즈
 
 - 기본 주소에서 1차 지도·부분 사진으로 장소를 찾는다. `map.html?region=chinatown`은 현재 준비된 차이나타운 구역이다.
 - 지도에서 **장소를 찾았어요 → 2차 퀴즈**를 누르면 `?play=field&region=chinatown`으로 이동한다. 대략 위치 보조와 도착 자가확인은 별개다.
@@ -70,6 +70,15 @@ cloudflared tunnel --url http://127.0.0.1:4179 --no-autoupdate --protocol http2
 - 로컬 브라우저에서 두 단계 이동·네 선택지·오답·힌트·정답 사진·확대·완료·복원·시연 기록 분리 확인. 320·390·1280px 지도 가로 넘침 없음.
 - 로컬 자동 검사 68개 중66통과, 기존 응답 필터 관련2실패 유지. 신규 지도·위치·미션·세션 검사를 포함한59개는 모두 통과. CI의 68개 검사·빌드·배포와 공개 주소 반영 확인을 마쳤다.
 
-## 최종 배포 확인 · field-v2
+## 이전 배포 확인 · field-v2
 
 2026-09-12 코드 커밋 `4deb9db`의 [GitHub Actions](https://github.com/ezid007/GDG_Incheon/actions/runs/34672204009)에서 68개 검사·빌드·배포가 성공했다. 로컬 응답 필터 실패2건은 CI에서 재현되지 않았다. 공개 HTTPS의 시작 버튼→1차 지도→일반 도착→2차 가림 사진·4지선다→정답 원본 사진·해설→완료를 브라우저에서 확인했다. 시연 주소는 별도 진행 0/1로 열리고 시연 안내가 표시된다. 브라우저 주소와 링크가 GitHub Pages 저장소 경로 아래에서 정상 연결된다. 현장 GPS 오차는 실제 휴대전화 확인이 남아 있다.
+
+## 현재 통합 배포 · unified-v1
+
+- 통합 지도: https://ezid007.github.io/GDG_Incheon/map.html
+- 문제 1 장소 찾기: `map.html?quiz=inhwamun-plaque`
+- 문제 1 현장 퀴즈: `?play=field&quiz=inhwamun-plaque`
+- 문제 1 시연: `?demo=arrival&quiz=inhwamun-plaque`
+- 기존 region 링크도 호환하지만 새 UI에서는 문제 ID로 이동한다. 정답 후 다음 문제의 지도 또는 전체 문제 목록으로 연결한다.
+- 로컬 빌드 성공, 72개 검사 중70통과·기존 AdGuard 응답 변경2실패. 지도18개·세션10개 포함 신규 검사는 통과했다. 320px 통합 지도, 선택 범위 표시, 문제별 완료와 목록 이동을 브라우저에서 확인했다. CI·공개 배포 결과는 다음 기록에서 확인한다.

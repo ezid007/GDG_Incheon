@@ -1,61 +1,65 @@
-const demoRegions = {
-  songwol: '송월동 동화마을',
-  chinatown: '차이나타운',
-};
 const normalStore = 'golmok-detective:v1';
 
 export function getPlaySession(data, search = '') {
   const params = new URLSearchParams(search);
-  const regionId = params.get('region');
-  const validRegion = params.getAll('region').length === 1 && Object.hasOwn(demoRegions, regionId);
-  const isDemo = validRegion && params.get('demo') === 'arrival'
+  const fieldMissions = data.missions.filter(mission => mission.sceneKind === 'field');
+  const isDemo = params.get('demo') === 'arrival'
     && params.getAll('demo').length === 1 && !params.has('play');
-  const isFieldPlay = validRegion && params.get('play') === 'field'
+  const isFieldPlay = params.get('play') === 'field'
     && params.getAll('play').length === 1 && !params.has('demo');
-  const allFieldMissions = data.missions.filter(mission => mission.sceneKind === 'field');
+  const firstQuiz = fieldMissions[0];
   if (!isDemo && !isFieldPlay) {
     return {
       isDemo: false,
       autoStart: false,
       regionId: null,
       regionLabel: '',
+      quizId: firstQuiz?.id ?? null,
+      quizNumber: firstQuiz ? 1 : 0,
+      quizCount: fieldMissions.length,
+      nextQuizId: fieldMissions[1]?.id ?? null,
       contentKind: 'standard',
-      missions: allFieldMissions.length ? allFieldMissions : data.missions,
+      missions: fieldMissions.length ? fieldMissions : data.missions,
       storageKey: normalStore,
       storageVersion: data.version,
-      mapHref: './map.html',
+      mapHref: firstQuiz ? './map.html?quiz=' + encodeURIComponent(firstQuiz.id) : './map.html',
       queryString: '',
     };
   }
 
-  const fieldMissions = allFieldMissions.filter(mission => mission.explorationRegionId === regionId);
-  if (isFieldPlay) {
-    return {
-      isDemo: false,
-      autoStart: true,
-      regionId,
-      regionLabel: demoRegions[regionId],
-      contentKind: fieldMissions.length ? 'field' : 'empty',
-      missions: fieldMissions,
-      storageKey: `golmok-detective:field:v1:${regionId}`,
-      storageVersion: `${data.version}:field:${regionId}`,
-      mapHref: `./map.html?region=${regionId}`,
-      queryString: `?play=field&region=${regionId}`,
-    };
+  const hasQuiz = params.has('quiz');
+  const validQuizParameter = params.getAll('quiz').length === 1;
+  let selectedQuiz;
+  if (hasQuiz) {
+    if (validQuizParameter) selectedQuiz = fieldMissions.find(mission => mission.id === params.get('quiz'));
+  } else {
+    const regionId = params.getAll('region').length === 1 ? params.get('region') : null;
+    selectedQuiz = fieldMissions.find(mission => regionId !== null && mission.explorationRegionId === regionId) ?? firstQuiz;
   }
-  const examples = data.missions.filter(mission => mission.sceneKind === 'example');
-  const missions = fieldMissions.length ? fieldMissions : examples;
-  const contentKind = fieldMissions.length ? 'field' : examples.length ? 'example' : 'empty';
+
+  const examples = !hasQuiz && isDemo && fieldMissions.length === 0
+    ? data.missions.filter(mission => mission.sceneKind === 'example') : [];
+  const missions = selectedQuiz ? [selectedQuiz] : examples;
+  const contentKind = selectedQuiz ? 'field' : examples.length ? 'example' : 'empty';
+  const quizIndex = selectedQuiz ? fieldMissions.indexOf(selectedQuiz) : -1;
+  const mode = isDemo ? 'demo-quiz' : 'quiz';
+  const storageId = selectedQuiz?.id ?? (contentKind === 'example' ? '__examples__' : '__unavailable__');
+  const modeQuery = isDemo ? '?demo=arrival' : '?play=field';
   return {
-    isDemo: true,
+    isDemo,
     autoStart: true,
-    regionId,
-    regionLabel: demoRegions[regionId],
+    regionId: null,
+    regionLabel: '',
+    quizId: selectedQuiz?.id ?? null,
+    quizNumber: quizIndex + 1,
+    quizCount: fieldMissions.length,
+    nextQuizId: quizIndex >= 0 ? fieldMissions[quizIndex + 1]?.id ?? null : null,
     contentKind,
     missions,
-    storageKey: `golmok-detective:demo-arrival:v1:${regionId}`,
-    storageVersion: `${data.version}:demo-arrival:${regionId}:${contentKind}`,
-    mapHref: `./map.html?region=${regionId}`,
-    queryString: `?demo=arrival&region=${regionId}`,
+    storageKey: `golmok-detective:${mode}:v1:${storageId}`,
+    storageVersion: `${data.version}:${mode}:${storageId}:${contentKind}`,
+    mapHref: selectedQuiz ? './map.html?quiz=' + encodeURIComponent(selectedQuiz.id) : './map.html',
+    queryString: selectedQuiz ? modeQuery + '&quiz=' + encodeURIComponent(selectedQuiz.id)
+      : hasQuiz ? modeQuery + '&quiz=' : modeQuery,
   };
 }

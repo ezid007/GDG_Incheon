@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#f4f1e8"><meta name="color-scheme" content="light">
-  <meta name="description" content="그림 지도의 탐색 구역을 보고 차이나타운과 동화마을의 골목을 찾아보세요.">
+  <meta name="description" content="하나의 그림 지도에서 문제를 고르고 사진 속 장소를 찾아보세요.">
   <title>골목 탐색 지도 — 차이나타운 골목탐정</title>
   <style>
     :root{--paper:#f4f1e8;--white:#fffdf8;--ink:#23372e;--muted:#5f6d60;--red:#ac3929;--line:#cdd2c3;--yellow:#f3d875;--sage:#dfe7d6;--blue:#236dc3}*{box-sizing:border-box}
@@ -19,11 +19,11 @@
 </head>
 <body><div class="wrap">
   <header class="masthead"><div class="brand">차이나타운 골목탐정<small>GOLMOK DETECTIVE · INCHEON</small></div><a class="back" href="./">← 게임으로</a></header>
-  <div class="heading"><div><p class="eyebrow">1차 퀴즈 · 힌트로 장소 찾기</p><h1>이 근처에서,<br><em>찾아보세요.</em></h1><p class="intro">지도와 사진 힌트로 실제 장소를 찾아요.<br>도착하면 2차 현장 퀴즈가 열려요.</p></div><div class="edition">A / B<small>차이나타운 · 동화마을</small></div></div>
-  <noscript><p class="no-script">지도는 볼 수 있지만 구역 선택과 현재 위치 확인에는 JavaScript가 필요해요.</p></noscript>
+  <div class="heading"><div><p class="eyebrow">1차 퀴즈 · 힌트로 장소 찾기</p><h1>이 근처에서,<br><em>찾아보세요.</em></h1><p class="intro">지도와 사진 힌트로 실제 장소를 찾아요.<br>도착하면 2차 현장 퀴즈가 열려요.</p></div><div class="edition">Explore<small>하나의 지도, 여러 개의 발견</small></div></div>
+  <noscript><p class="no-script">지도는 볼 수 있지만 문제 선택과 현재 위치 확인에는 JavaScript가 필요해요.</p></noscript>
   <main class="layout">
-    <section class="map-card" aria-label="그림 지도"><div class="map-toolbar"><strong>손가락으로 지도를 움직여요</strong><div class="controls"><button class="control symbol" id="zoom-out" aria-label="지도 축소" type="button">−</button><button class="control symbol" id="zoom-in" aria-label="지도 확대" type="button">+</button><button class="control" id="fit" type="button">전체</button></div></div><div id="map-scroll" class="map-scroll" tabindex="0" aria-label="확대 가능한 지도. 방향키나 손가락으로 이동할 수 있습니다."><div id="map-canvas" class="map-canvas"><!--__MAP_SVG__--></div></div><div class="map-caption"><span class="key"><i></i>탐색 구역</span><span class="key"><i class="blue"></i>내 위치·오차 범위</span><span class="key"><i class="road-key"></i>주변 길</span></div><section class="location-panel" aria-label="내 위치 확인"><p class="panel-label">02 · 지금 어디쯤일까?</p><button id="locate" class="location-button" type="button">내 위치 확인<span aria-hidden="true">◎</span></button><p id="location-status" class="location-status" role="status" aria-live="polite">휴대전화에서 이 페이지를 열고 눌러 주세요. 위치 접근을 허용하면 현재 위치를 한 번 확인해요.</p><p class="privacy">위치는 저장하거나 서버로 보내지 않아요. 이동한 뒤 버튼을 다시 눌러 주세요.</p></section><section id="field-play" class="field-play" aria-label="현장에서 문제 풀기" hidden><a id="field-quiz" class="demo-link" href="./?play=field&amp;region=chinatown">장소를 찾았어요 → 2차 퀴즈</a><p class="field-note">현장에서 직접 확인하고 답해 주세요. 위치 인증 없이 스스로 진행하는 탐험이에요.</p></section><section class="demo-panel" aria-label="발표 시연"><p class="demo-label">발표용 시연 · 위치 확인 생략</p><a id="demo-arrival" class="demo-link" href="./?demo=arrival&amp;region=songwol"><span>시연: 도착했어요 → 2차 퀴즈</span><span aria-hidden="true">↗</span></a><p class="demo-note">실제 도착 확인 없이 진행해요. 구역 문제가 준비되기 전에는 예시 퀴즈를 보여줘요.</p></section></section>
-    <aside class="sidebar"><section class="region-panel" aria-labelledby="region-title"><p class="panel-label">1차 퀴즈 · 장소 찾기</p><div id="region-buttons" class="region-buttons"></div><h2 id="region-title" class="region-title">동화마을 골목</h2><p id="region-description" class="region-copy">색칠된 범위의 골목을 둘러보세요.</p><img id="region-clue" class="region-clue" alt="" hidden><span id="region-status" class="preview">실제 문제 연결 준비 중</span></section><div class="instructions"><p><strong>원 안 어디쯤에 있을까요?</strong><br>색칠된 범위는 정답 위치가 아닌 탐색할 구역이에요.</p><p>그림 지도는 주변을 살펴보기 위한 안내예요. 길이 막혔거나 출입이 제한된 곳은 현장 안내를 따라 주세요.</p></div></aside>
+    <section class="map-card" aria-label="그림 지도"><div class="map-toolbar"><strong>손가락으로 지도를 움직여요</strong><div class="controls"><button class="control symbol" id="zoom-out" aria-label="지도 축소" type="button">−</button><button class="control symbol" id="zoom-in" aria-label="지도 확대" type="button">+</button><button class="control" id="fit" type="button">전체</button></div></div><div id="map-scroll" class="map-scroll" tabindex="0" aria-label="확대 가능한 지도. 방향키나 손가락으로 이동할 수 있습니다."><div id="map-canvas" class="map-canvas"><!--__MAP_SVG__--></div></div><div class="map-caption"><span class="key"><i></i>이 문제의 탐색 범위</span><span class="key"><i class="blue"></i>내 위치·오차 범위</span><span class="key"><i class="road-key"></i>주변 길</span></div><section class="location-panel" aria-label="내 위치 확인"><p class="panel-label">02 · 지금 어디쯤일까?</p><button id="locate" class="location-button" type="button">내 위치 확인<span aria-hidden="true">◎</span></button><p id="location-status" class="location-status" role="status" aria-live="polite">휴대전화에서 이 페이지를 열고 눌러 주세요. 위치 접근을 허용하면 현재 위치를 한 번 확인해요.</p><p class="privacy">위치는 저장하거나 서버로 보내지 않아요. 이동한 뒤 버튼을 다시 눌러 주세요.</p></section><section id="field-play" class="field-play" aria-label="현장에서 문제 풀기" hidden><a id="field-quiz" class="demo-link" >장소를 찾았어요 → 2차 퀴즈</a><p class="field-note">현장에서 직접 확인하고 답해 주세요. 위치 인증 없이 스스로 진행하는 탐험이에요.</p></section><section id="demo-panel" class="demo-panel" aria-label="발표 시연" hidden><p class="demo-label">발표용 시연 · 위치 확인 생략</p><a id="demo-arrival" class="demo-link" ><span>시연: 도착했어요 → 2차 퀴즈</span><span aria-hidden="true">↗</span></a><p class="demo-note">선택한 문제에 도착했다고 가정하고 진행해요. 실제 방문 기록과는 별개예요.</p></section></section>
+    <aside class="sidebar"><section class="region-panel" aria-labelledby="region-title"><p class="panel-label">문제 목록</p><div id="region-buttons" class="region-buttons" aria-label="탐험할 문제 선택"></div><h2 id="region-title" class="region-title">문제를 골라 주세요</h2><p id="region-description" class="region-copy">색칠된 범위의 골목을 둘러보세요.</p><img id="region-clue" class="region-clue" alt="" hidden><span id="region-status" class="preview">실제 문제 연결 준비 중</span></section><div class="instructions"><p><strong>원 안 어디쯤에 있을까요?</strong><br>색칠된 범위에서 선택한 문제의 장소를 찾아보세요.</p><p>그림 지도는 주변을 살펴보기 위한 안내예요. 길이 막혔거나 출입이 제한된 곳은 현장 안내를 따라 주세요.</p></div></aside>
   </main>
   <footer class="source"><span>실제 도로를 바탕으로 단순화한 지도 · 북쪽이 위 · 길찾기 경로·도착 인증 없음</span><span>© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a> · <a href="https://itour.incheon.go.kr/ssst/ssst/detail.do?cotId=ITD22012113593866643" target="_blank" rel="noopener noreferrer">인천투어</a></span></footer>
 </div>
@@ -32,11 +32,29 @@
 const MAP = /*__MAPDATA__*/;
 /*__LOCATION__*/
 const $ = id => document.getElementById(id);
-let selectedRegion=MAP.regions[0], zoom=1, expiryTimer, lastTimestamp=0, requestSerial=0, pendingTimer;
-function focusMapPoint(point){const scale=$('map-canvas').clientWidth/MAP.width;$('map-scroll').scrollTo({left:point.x*scale-$('map-scroll').clientWidth/2,top:point.y*scale-$('map-scroll').clientHeight/2,behavior:'instant'});}
-function resizeMap(){const width=Math.max(600,$('map-scroll').clientWidth)*zoom;$('map-canvas').style.width=width+'px';$('map-canvas').style.height=width*MAP.height/MAP.width+'px';$('zoom-out').disabled=zoom<=.4;$('zoom-in').disabled=zoom>=2.5;focusMapPoint(selectedRegion);}
-function selectRegion(region){selectedRegion=region;$('field-play').hidden=!region.ready;$('field-quiz').setAttribute('href','./?play=field&region='+encodeURIComponent(region.id));$('region-status').textContent=region.ready?'현장 4지선다 미션':'탐색 구역 예시 · 문제 준비 중';$('region-clue').hidden=!region.clueImage;if(region.clueImage){$('region-clue').src=region.clueImage;$('region-clue').alt=region.clueAlt;}else{$('region-clue').removeAttribute('src');$('region-clue').alt='';}$('demo-arrival').setAttribute('href','./?demo=arrival&region='+encodeURIComponent(region.id));$('region-title').textContent=region.letter+' · '+region.name;$('region-description').textContent=region.description;document.querySelectorAll('[data-region]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.region===region.id)));document.querySelectorAll('[data-zone]').forEach(zone=>zone.classList.toggle('is-active',zone.dataset.zone===region.id));focusMapPoint(region);}
-MAP.regions.forEach(region=>{const button=document.createElement('button');button.type='button';button.className='region-button';button.dataset.region=region.id;button.textContent=region.letter+' · '+(region.id==='songwol'?'동화마을':'차이나타운');button.addEventListener('click',()=>selectRegion(region));$('region-buttons').append(button);});
+let selectedQuiz=null, zoom=1, expiryTimer, lastTimestamp=0, requestSerial=0, pendingTimer;
+function focusMapPoint(point){point=point||{x:MAP.width/2,y:MAP.height/2};const scale=$('map-canvas').clientWidth/MAP.width;$('map-scroll').scrollTo({left:point.x*scale-$('map-scroll').clientWidth/2,top:point.y*scale-$('map-scroll').clientHeight/2,behavior:'instant'});}
+function resizeMap(){const width=Math.max(600,$('map-scroll').clientWidth)*zoom;$('map-canvas').style.width=width+'px';$('map-canvas').style.height=width*MAP.height/MAP.width+'px';$('zoom-out').disabled=zoom<=.4;$('zoom-in').disabled=zoom>=2.5;focusMapPoint(selectedQuiz);}
+function selectQuiz(quiz){
+  selectedQuiz=quiz||null;
+  $('field-play').hidden=!quiz;$('demo-panel').hidden=!quiz;$('region-clue').hidden=!quiz;
+  $('region-status').textContent=quiz?'현장 4지선다 미션':'문제 준비 중';
+  $('region-title').textContent=quiz?'문제 '+quiz.number+' · 장소 찾기':'문제를 준비하고 있어요';
+  $('region-description').textContent=quiz?quiz.description:MAP.quizzes.length?'요청한 문제를 찾지 못했어요. 아래 문제 목록에서 골라 주세요.':'아직 등록된 현장 문제가 없어요. 문제가 준비되면 이 지도에서 탐험을 시작할 수 있어요.';
+  if(quiz){
+    const query=encodeURIComponent(quiz.id);
+    $('field-quiz').setAttribute('href','./?play=field&quiz='+query);
+    $('demo-arrival').setAttribute('href','./?demo=arrival&quiz='+query);
+    $('region-clue').src=quiz.clueImage;$('region-clue').alt=quiz.clueAlt;
+  }else{
+    $('field-quiz').removeAttribute('href');$('demo-arrival').removeAttribute('href');
+    $('region-clue').removeAttribute('src');$('region-clue').alt='';
+  }
+  document.querySelectorAll('[data-quiz]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.quiz===quiz?.id)));
+  document.querySelectorAll('[data-zone]').forEach(zone=>{const active=zone.dataset.zone===quiz?.id;zone.classList.toggle('is-active',active);if(active)zone.removeAttribute('hidden');else zone.setAttribute('hidden','');});
+  focusMapPoint(quiz);
+}
+MAP.quizzes.forEach(quiz=>{const button=document.createElement('button');button.type='button';button.className='region-button';button.dataset.quiz=quiz.id;button.textContent='문제 '+quiz.number;button.addEventListener('click',()=>selectQuiz(quiz));$('region-buttons').append(button);});
 $('zoom-in').addEventListener('click',()=>{zoom=Math.min(2.5,zoom+.3);resizeMap();});$('zoom-out').addEventListener('click',()=>{zoom=Math.max(.4,zoom-.3);resizeMap();});$('fit').addEventListener('click',()=>{zoom=$('map-scroll').clientWidth/Math.max(600,$('map-scroll').clientWidth);resizeMap();});window.addEventListener('resize',resizeMap);
 function status(message,state='idle'){$('location-status').textContent=message;$('location-status').dataset.state=state;}
 function hideLocation(){clearTimeout(expiryTimer);$('user-location').setAttribute('hidden','');lastTimestamp=0;}
@@ -44,5 +62,11 @@ function checkExpiry(){if(lastTimestamp&&Date.now()-lastTimestamp>LOCATION_MAX_A
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkExpiry();});
 function showPosition(position){const result=assessLocation(position,MAP.bounds,MAP.width,MAP.height);hideLocation();const messages={outside:'지금은 이 지도의 범위 밖이에요. 차이나타운·동화마을에 도착해서 다시 확인해 주세요.',inaccurate:'위치 오차가 커서 점을 표시하지 않았어요. 주변이 트인 곳에서 다시 확인해 주세요.',stale:'오래된 위치가 전달됐어요. 현재 위치를 다시 확인해 주세요.',invalid:'위치를 읽지 못했어요. 휴대전화의 위치 설정을 확인한 뒤 다시 눌러 주세요.'};if(result.status!=='ready'){status(messages[result.status],'error');return;}lastTimestamp=result.timestamp;$('user-location').setAttribute('transform',`translate(${result.x} ${result.y})`);$('user-accuracy').setAttribute('rx',result.radiusX);$('user-accuracy').setAttribute('ry',result.radiusY);$('user-location').removeAttribute('hidden');status('파란 점이 현재 위치예요. 예상 오차 약 '+Math.max(1,Math.ceil(result.accuracy))+'m · 이동 후 다시 눌러 주세요.','ready');focusMapPoint(result);expiryTimer=setTimeout(checkExpiry,Math.max(0,LOCATION_MAX_AGE_MS-(Date.now()-result.timestamp))+20);}
 $('locate').addEventListener('click',()=>{hideLocation();if(!window.isSecureContext){status('위치 확인은 HTTPS 주소에서 가능해요. 공개된 게임 주소로 열어 주세요.','error');return;}if(!navigator.geolocation){status('이 브라우저에서는 위치 확인을 지원하지 않아요. 그림 지도로 주변을 살펴봐 주세요.','error');return;}const serial=++requestSerial;$('locate').disabled=true;status('현재 위치를 확인하고 있어요. 권한 창이 나타나면 허용해 주세요.');const finish=()=>{if(serial!==requestSerial)return false;clearTimeout(pendingTimer);$('locate').disabled=false;return true;};pendingTimer=setTimeout(()=>{if(finish()){requestSerial++;status('위치 확인이 오래 걸리고 있어요. 휴대전화 위치 권한을 확인한 뒤 다시 눌러 주세요.','error');}},20000);try{navigator.geolocation.getCurrentPosition(position=>{if(finish())showPosition(position);},error=>{if(!finish())return;const messages={1:'위치 접근이 허용되지 않았어요. 브라우저의 사이트 설정에서 위치를 허용하고 다시 눌러 주세요.',2:'현재 위치를 찾지 못했어요. 휴대전화 위치 기능을 켜고 다시 시도해 주세요.',3:'위치를 확인하는 시간이 지났어요. 주변이 트인 곳에서 다시 눌러 주세요.'};status(messages[error.code]||'위치 확인에 실패했어요. 잠시 후 다시 눌러 주세요.','error');},{enableHighAccuracy:true,timeout:15000,maximumAge:0});}catch{if(finish())status('위치 기능을 실행하지 못했어요. 브라우저 설정을 확인해 주세요.','error');}});
-const requestedRegion=new URLSearchParams(window.location.search).get("region");selectedRegion=MAP.regions.find(region=>region.id===requestedRegion)||selectedRegion;resizeMap();selectRegion(selectedRegion);
+const requested=new URLSearchParams(window.location.search);
+if(requested.has('quiz')){
+  selectedQuiz=requested.getAll('quiz').length===1?MAP.quizzes.find(quiz=>quiz.id===requested.get('quiz'))||null:null;
+}else{
+  selectedQuiz=MAP.quizzes.find(quiz=>quiz.regionId===requested.get('region'))||MAP.quizzes[0]||null;
+}
+resizeMap();selectQuiz(selectedQuiz);
 </script></body></html>
