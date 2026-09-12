@@ -41,10 +41,10 @@ const quizzes = [
     new Quiz(
         "apps/golmok-detective/data/quiz-images/pinocchio-clouds/part-photo.jpg",
         undefined,
-        "피노키오 뒤쪽 흰 벽면과 흰색 함의 문에 그려진 구름 모양 무늬는 모두 몇 개일까요?",
+        "피노키오 뒤 흰 벽에 그려진 파란색 구름 모양 무늬는 모두 몇 개일까요? 옅은 하늘색도 포함해 주세요.",
         ["1. 3개", "2. 4개", "3. 5개", "4. 6개"],
         3,
-        "흰 벽면의 진한 파랑, 위쪽 청록, 옅은 분홍, 옅은 민트와 흰색 함 위 분홍 무늬까지 모두 5개예요. 갈라진 꼬리선을 따로 세지 않고 무늬 한 덩어리를 1개로 세어요.",
+        "파란색 계열 무늬는 모두 5개예요. 피노키오 팔 뒤의 작은 무늬 2개, 배관 뒤 큰 무늬 1개, 그 위의 옅은 하늘색 1개, 지붕 아래 1개를 세어요. 분홍색 무늬는 포함하지 않아요.",
         "apps/golmok-detective/data/quiz-images/pinocchio-clouds/answer-photo.jpg",
         undefined,
         "apps/golmok-detective/data/quiz-images/pinocchio-clouds/quiz-photo.jpg"

@@ -1,5 +1,5 @@
 {
-  "version": "unified-pinocchio-v1",
+  "version": "unified-pinocchio-v2",
   "title": "차이나타운 골목탐정",
   "reviews": [
     {
@@ -27,7 +27,7 @@
     {
       "id": "pinocchio-clouds",
       "quizKey": "pinocchio-clouds",
-      "sourceId": "USER-20260912-PINOCCHIO",
+      "sourceId": "USER-20260912-PINOCCHIO-CONFIRMED",
       "sceneKind": "field",
       "explorationRegionId": "songwol",
       "explorationDescription": "이 근처에서 사진처럼 벽에 그려진 푸른 무늬를 찾아보세요. 닮은 모양이 보이면 주변을 둘러보고 같은 장소인지 확인해요.",
@@ -37,11 +37,11 @@
       "quizImage": "assets/field-pinocchio-quiz.jpg",
       "quizImageAlt": "분홍 하트 옆의 피노키오와 사슴 조형물 근접 사진. 뒤쪽 흰 벽의 일부만 보이므로 전체 무늬 개수는 현장에서 둘러보며 확인하세요.",
       "answerImage": "assets/field-pinocchio-answer.jpg",
-      "answerImageAlt": "분홍 하트와 피노키오가 있는 무대 전체 사진. 피노키오 뒤 흰 벽과 흰색 함에 색이 다른 구름 모양 무늬 다섯 개가 보입니다.",
-      "hint": "피노키오 뒤의 흰 벽을 위에서 아래로 살펴봐요. 옅은색 무늬와 흰색 함의 문에 그려진 무늬도 포함해요. 갈라진 꼬리선 하나하나가 아니라 같은 모양 한 덩어리를 1개로 세어요.",
-      "explanation": "무늬는 모두 5개예요. 피노키오 오른쪽의 진한 파랑, 위쪽 청록과 옅은 분홍, 가운데 옅은 민트, 흰색 함 위 분홍 무늬를 하나씩 세어보세요.",
-      "evidenceQuote": "전체 사진에서 피노키오 뒤 흰 벽과 흰색 함의 표면을 함께 보면 같은 모양의 무늬 5개가 있습니다. 옅은색 무늬 2개를 놓치지 않도록 확대해서 확인하세요.",
-      "evidence": { "x": 74.1, "y": 48.2 },
+      "answerImageAlt": "피노키오 옆에서 뒤쪽 흰 벽을 가까이 찍은 정답 사진. 팔 뒤 작은 파란 무늬 2개, 배관 뒤 큰 무늬 1개, 위쪽 옅은 하늘색 1개, 지붕 아래 파란 무늬 1개가 보입니다. 분홍색 무늬는 세지 않습니다.",
+      "hint": "사진 단서와 같은 파란색 계열 무늬만 세어 보세요. 피노키오 팔 뒤쪽과 벽 위쪽도 살펴보고, 옅은 하늘색을 놓치지 마세요. 갈라진 꼬리선이 아니라 무늬 한 덩어리를 1개로 세어요.",
+      "explanation": "파란색 계열 무늬는 모두 5개예요. 팔 뒤 작은 무늬 2개 + 배관 뒤 큰 무늬 1개 + 위쪽의 옅은 하늘색 1개 + 지붕 아래 1개예요. 분홍색 무늬는 포함하지 않아요.",
+      "evidenceQuote": "정답 사진에서 흰 벽의 파란색 계열 무늬만 세면 작은 것 2개, 배관 뒤 1개, 옅은 하늘색 1개, 지붕 아래 1개로 총 5개입니다.",
+      "evidence": { "x": 49.5, "y": 51.5 },
       "expectedAnswer": "5개"
     }
   ],
