@@ -82,3 +82,5 @@ cloudflared tunnel --url http://127.0.0.1:4179 --no-autoupdate --protocol http2
 - 문제 1 시연: `?demo=arrival&quiz=inhwamun-plaque`
 - 기존 region 링크도 호환하지만 새 UI에서는 문제 ID로 이동한다. 정답 후 다음 문제의 지도 또는 전체 문제 목록으로 연결한다.
 - 로컬 빌드 성공, 72개 검사 중70통과·기존 AdGuard 응답 변경2실패. 지도18개·세션10개 포함 신규 검사는 통과했다. 320px 통합 지도, 선택 범위 표시, 문제별 완료와 목록 이동을 브라우저에서 확인했다. CI·공개 배포 결과는 다음 기록에서 확인한다.
+
+최종 확인: 코드 `f12fe15`의 [GitHub Actions](https://github.com/ezid007/GDG_Incheon/actions/runs/34673092862)에서 빌드·72개 검사·Pages 배포 모두 성공했다. 공개 Chrome에서 통합 문제 목록→선택한 탐색 원→일반 도착→2차 가림 사진·4지선다→정답 전체 사진→완료→문제 목록을 확인했다. 일반 완료 후 시연은 별도0/1진행으로 열린다. 공개390px와 로컬320·1280px에서 가로 넘침이 없었다. 기존 로컬AdGuard2실패는CI에서재현되지않았고 현장GPS오차확인만남아있다.
