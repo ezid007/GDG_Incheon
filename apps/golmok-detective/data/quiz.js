@@ -1,5 +1,5 @@
 class Quiz {
-    constructor(partPhoto, hintPhoto, quizText, choices, correctAnswerIndex, answerExplanation, answerImage, geoCoordinates) {
+    constructor(partPhoto, hintPhoto, quizText, choices, correctAnswerIndex, answerExplanation, answerImage, geoCoordinates, quizPhoto) {
         this.partPhoto = partPhoto;
         this.hintPhoto = hintPhoto;
         this.quizText = quizText;
@@ -8,6 +8,7 @@ class Quiz {
         this.answerExplanation = answerExplanation;
         this.answerImage = answerImage;
         this.geoCoordinates = geoCoordinates;
+        this.quizPhoto = quizPhoto;
     }
 
     toJson() {
@@ -19,7 +20,8 @@ class Quiz {
             correctAnswerIndex: this.correctAnswerIndex,
             answerExplanation: this.answerExplanation,
             answerImage: this.answerImage,
-            geoCoordinates: this.geoCoordinates
+            geoCoordinates: this.geoCoordinates,
+            quizPhoto: this.quizPhoto
         };
     }
 }
@@ -33,7 +35,8 @@ const quizzes = [
         1,
         "인천 차이나타운 입구에 세워진 패루 중 하나로, '어질고 화목하다'는 뜻을 담은 이름입니다.",
         "apps/golmok-detective/data/quiz-images/inhwamun/answer-photo.jpg",
-        { latitude: 37.473045, longitude: 126.6188592 }
+        { latitude: 37.473045, longitude: 126.6188592 },
+        "apps/golmok-detective/data/quiz-images/inhwamun/quiz-photo.jpg"
     )
 ];
 
