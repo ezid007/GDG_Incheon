@@ -1,6 +1,6 @@
 # 실행과 임시 공개
 
-확인일: 2026-09-12 · 게임 버전: unified-v1 · Node.js 표준 모듈만 사용
+확인일: 2026-09-12 · 게임 버전: unified-pinocchio-v1 · Node.js 표준 모듈만 사용
 
 ## 팀원 GitHub Pages 배포
 
@@ -90,3 +90,5 @@ cloudflared tunnel --url http://127.0.0.1:4179 --no-autoupdate --protocol http2
 새문제장소찾기: https://ezid007.github.io/GDG_Incheon/map.html?quiz=pinocchio-clouds
 시연: https://ezid007.github.io/GDG_Incheon/?demo=arrival&quiz=pinocchio-clouds
 현재빌드의실제문제는2개이며자료버전변경으로이전진행과구분한다. 로컬390px에서사진공개시점과4지선다오답/정답처리확인. 새커밋의CI·Pages확인은아직대기상태다.
+
+최종확인: `4349271`의 [Actions34673636479](https://github.com/ezid007/GDG_Incheon/actions/runs/34673636479)에서72개검사·빌드·배포모두성공. 공개문제2지도에서확대무늬사진, 시연도착후근접사진·3/4/5/6보기, 5개정답후전체전경과해설을확인했다. 지도와퀴즈상대링크가저장소경로아래서작동한다. 원본사진3장의무변경복사와로컬320·390px화면도확인했다.
