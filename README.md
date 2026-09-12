@@ -6,6 +6,8 @@
 
 현재는 가상 예시 그림으로 만든 3개 미션을 사용합니다. 실제 현장 사진과 관찰 기록은 아직 반영하지 않았습니다. 주소는 개발 노트북·게임 서버·터널이 켜져 있는 동안 유지됩니다.
 
+팀원이 추가한 차이나타운 관문 사진·미션 초안은 `raw/missions/`와 [미션 문서](wiki/mission-chinatown-gate.md)에 보존되어 있습니다. 해당 자료는 다음 콘텐츠 반영 대상이며 현재 예시 게임과 구분합니다.
+
 ## 어떻게 플레이하나요?
 
 1. 시작 버튼을 누릅니다.
@@ -51,4 +53,4 @@ node --test apps/golmok-detective/tests/*.test.mjs
 
 브라우저에서 3미션 완주, 오답 재시도, 힌트, 그림 확대, 새로고침 복원, 재시작과 주소 복사를 확인했습니다. 320·390·768·1280px 화면 폭에서 가로 넘침이 없고, 공개 HTTPS의 GET·HEAD 응답도 정상입니다. 실제 현장 휴대전화의 모바일 데이터망 확인은 팀원이 이어서 진행합니다.
 
-진행 계획은 [PLAN.md](PLAN.md), 파일 구조와 데이터 작성법은 [구현·협업 안내](docs/golmok-detective/implementation.md), 제작 과정은 [Agent 작업 기록](docs/golmok-detective/agent-work.md)을 참고하세요. 이 작업과 관련 없는 문서·실행 로그·인증 자료는 저장소 공유 범위에서 제외합니다.
+진행 계획은 [PLAN.md](PLAN.md), 파일 구조와 데이터 작성법은 [구현·협업 안내](docs/golmok-detective/implementation.md), 제작 과정은 [Agent 작업 기록](docs/golmok-detective/agent-work.md)을 참고하세요. 이 노트북의 기존 개인 문서·실행 로그·인증 자료는 새 커밋에서 제외합니다. 팀원이 이미 공유한 `wiki/`, `raw/`, 저장소 지침은 보존합니다.
