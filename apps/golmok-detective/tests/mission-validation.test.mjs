@@ -1,10 +1,10 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { loadMissionData } from '../load-quiz.mjs';
 import { test } from 'node:test';
 import { validateMissionData } from '../mission-validation.mjs';
 import { initialState, restoreState, transition } from '../game-state.mjs';
 
-const examples = JSON.parse(await readFile(new URL('../data/missions.json', import.meta.url), 'utf8'));
+const examples = await loadMissionData();
 const fieldData = () => {
   const mission = structuredClone(examples.missions[0]);
   mission.sceneKind = 'field';
@@ -90,6 +90,28 @@ test('a separate answer image is optional but needs a valid asset path and descr
   }
   delete data.missions[0].answerImage;
   assert.throws(() => validateMissionData(data), /requires an answer image/);
+});
+
+test('a separate quiz image is optional but needs a valid asset path and description', () => {
+  const data = fieldData();
+  delete data.missions[0].quizImage;
+  delete data.missions[0].quizImageAlt;
+  assert.doesNotThrow(() => validateMissionData(data));
+  data.missions[0].quizImage = 'assets/gate-quiz.jpg';
+  data.missions[0].quizImageAlt = '현판을 가린 현장 문제 사진';
+  assert.doesNotThrow(() => validateMissionData(data));
+  for (const path of ['../gate.jpg', 'https://example.com/gate.jpg', '', null]) {
+    const invalid = structuredClone(data);
+    invalid.missions[0].quizImage = path;
+    assert.throws(() => validateMissionData(invalid), /Invalid quiz image path/);
+  }
+  for (const description of [undefined, '', ' ']) {
+    const invalid = structuredClone(data);
+    invalid.missions[0].quizImageAlt = description;
+    assert.throws(() => validateMissionData(invalid), /Missing quiz image description/);
+  }
+  delete data.missions[0].quizImage;
+  assert.throws(() => validateMissionData(data), /requires a quiz image/);
 });
 
 test('missing field evidence, duplicate mission IDs, and unsafe image paths remain invalid', () => {

@@ -42,6 +42,12 @@ export function validateMissionData(data) {
     if (!isPublicImage(mission.image)) {
       throw new Error('Invalid public image path.');
     }
+    if (mission.quizImage !== undefined) {
+      if (!isPublicImage(mission.quizImage)) throw new Error('Invalid quiz image path.');
+      if (!hasText(mission.quizImageAlt)) throw new Error('Missing quiz image description.');
+    } else if (mission.quizImageAlt !== undefined) {
+      throw new Error('A quiz image description requires a quiz image.');
+    }
     if (mission.answerImage !== undefined) {
       if (!isPublicImage(mission.answerImage)) throw new Error('Invalid answer image path.');
       if (!hasText(mission.answerImageAlt)) throw new Error('Missing answer image description.');

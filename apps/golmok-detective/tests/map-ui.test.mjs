@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { test } from 'node:test';
 import { runInNewContext } from 'node:vm';
+import { loadMissionData } from '../load-quiz.mjs';
 
 const html = await readFile(new URL('../public/map.html', import.meta.url), 'utf8');
 const scripts = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)];
@@ -289,7 +290,7 @@ test('changing the region updates the arrival link without changing a measured G
 });
 
 test('field play and its clue appear only in a region with an authored field mission', async () => {
-  const source = JSON.parse(await readFile(new URL('../data/missions.json', import.meta.url), 'utf8'));
+  const source = await loadMissionData();
   const ui = page();
   for (const region of config.regions) {
     const mission = source.missions.find(item => item.sceneKind === 'field' && item.explorationRegionId === region.id);
@@ -314,11 +315,13 @@ test('field play and its clue appear only in a region with an authored field mis
   }
 });
 
-test('the map does not embed the full answer image for a field mission', async () => {
-  const source = JSON.parse(await readFile(new URL('../data/missions.json', import.meta.url), 'utf8'));
-  for (const mission of source.missions.filter(item => item.sceneKind === 'field' && item.answerImage)) {
-    const answerBytes = await readFile(new URL('../public/' + mission.answerImage, import.meta.url));
-    assert.equal(html.includes(answerBytes.toString('base64')), false, 'the answer photo must not be used as a map clue');
-    assert.equal(html.includes(mission.answerImage), false);
+test('the map does not embed second-stage quiz or answer images for a field mission', async () => {
+  const source = await loadMissionData();
+  for (const mission of source.missions.filter(item => item.sceneKind === 'field')) {
+    for (const imagePath of [mission.quizImage, mission.answerImage].filter(Boolean)) {
+      const bytes = await readFile(new URL('../public/' + imagePath, import.meta.url));
+      assert.equal(html.includes(bytes.toString('base64')), false, 'second-stage photos must not be used as map clues');
+      assert.equal(html.includes(imagePath), false);
+    }
   }
 });

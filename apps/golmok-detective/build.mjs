@@ -3,12 +3,13 @@ import {dirname,join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {validateMissionData} from './mission-validation.mjs';
 import {buildMap} from './build-map.mjs';
+import {loadMissionData} from './load-quiz.mjs';
 
 const root=dirname(fileURLToPath(import.meta.url));
-const data=JSON.parse(await readFile(join(root,'data/missions.json'),'utf8'));
+const data=await loadMissionData();
 validateMissionData(data);
 const assets={};
-const imagePaths=new Set(data.missions.flatMap(m=>m.answerImage?[m.image,m.answerImage]:[m.image]));
+const imagePaths=new Set(data.missions.flatMap(m=>[m.image,m.quizImage,m.answerImage].filter(path=>path!==undefined)));
 for(const imagePath of imagePaths){
   const bytes=await readFile(join(root,'public',imagePath));
   const ext=imagePath.split('.').at(-1);const mime={svg:'image/svg+xml',jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',webp:'image/webp'}[ext];
@@ -22,4 +23,4 @@ const output=template.replace('/*__DATA__*/',()=>escapeJson(data)).replace('/*__
 if(/\/\*__(?:DATA|STATE|DEMO|ASSETS)__\*\//.test(output))throw new Error('Unfilled template marker.');
 await writeFile(join(root,'public/index.html'),output,'utf8');
 console.log('Built standalone game: '+data.missions.length+' missions, '+Buffer.byteLength(output)+' bytes.');
-await buildMap(root);
+await buildMap(root,data);
