@@ -1,4 +1,4 @@
-# 개항장 골목탐정
+# 동화마을 골목탐정
 
 사진 속 단서를 찾아 장소의 특징을 발견하는 짧은 모바일 관찰 게임입니다. Agent Field Trip 2026: Incheon에서 만드는 작품으로, 현장에서 관찰한 내용과 게임의 질문·정답 근거를 연결하는 것이 목표입니다.
 
@@ -44,7 +44,7 @@ node apps/golmok-detective/serve.mjs --port 4180
 node --test apps/golmok-detective/tests/*.test.mjs
 ```
 
-2026-09-12 첫 GitHub Actions 배포에서 **20개 검사 모두 통과**했습니다. 같은 검사의 로컬 실행에서는 AdGuard의 HTML 헤더·HEAD 응답 변경으로 2개가 실패했으며 기록을 유지합니다. 지도 공개 경로 검사 1개를 추가해 로컬 통과도 확인했습니다. 자세한 범위와 남은 검증은 [구현·협업 안내](docs/golmok-detective/implementation.md)에 기록합니다.
+2026-09-12 지도 공개 경로를 포함한 **21개 검사가 GitHub Actions에서 모두 통과**했습니다. 로컬 실행에서 발생했던 AdGuard의 HTML 헤더·HEAD 응답 변경 실패 2건도 기록을 유지합니다. 자세한 범위와 남은 검증은 [구현·협업 안내](docs/golmok-detective/implementation.md)에 기록합니다.
 
 ## 동료가 참여할 부분
 

@@ -10,6 +10,8 @@
 
 첫 실행 #1은 테스트20개·빌드·배포 모두 성공했다. [실행 기록](https://github.com/ezid007/GDG_Incheon/actions/runs/34669308422). 아래 공개 URL에서 GET 200과 게임 제목을 확인했다. 팀원 본인의 세션에서 직접 실행하는 검증은 별도다.
 
+지도 포함 실행 #2도 테스트21개·빌드·배포 성공했고 `/map.html` GET 200을 확인했다. [실행 #2](https://github.com/ezid007/GDG_Incheon/actions/runs/34669603240). 서비스명은 동화마을 골목탐정이며 배포 주소는 유지한다.
+
 **기본 공개 주소: [GitHub Pages 게임](https://ezid007.github.io/GDG_Incheon/)**. 지도는 `/GDG_Incheon/map.html`에 제공한다. 이 주소는 개발 노트북이나 Cloudflare 터널 실행 여부와 관계없이 GitHub Pages에서 제공된다. 변경 반영은 푸시 후 Actions 배포가 성공해야 완료된다.
 
 공식 근거: [개인 저장소 권한](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/repository-access-and-collaboration/permission-levels-for-a-personal-account-repository), [Pages 사용자 정의 워크플로](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages), [쓰기 권한으로 수동 실행](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow).
