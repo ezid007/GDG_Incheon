@@ -2,7 +2,7 @@ const optionCounts = { example: 3, field: 4 };
 const requiredText = ['sourceId', 'placeLabel', 'imageAlt', 'question', 'hint', 'explanation', 'evidenceQuote'];
 const hasText = value => typeof value === 'string' && value.trim().length > 0;
 const isPublicImage = value => typeof value === 'string'
-  && /^assets\/[a-z0-9-]+\.(svg|jpg|jpeg|png|webp)$/.test(value);
+  && /^assets\/(?:[a-z0-9-]+\/)*[a-z0-9-]+\.(svg|jpg|jpeg|png|webp)$/.test(value);
 
 export function validateMissionData(data) {
   if (!data || !hasText(data.version) || !Array.isArray(data.missions) || data.missions.length === 0) {

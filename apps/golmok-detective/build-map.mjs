@@ -23,7 +23,7 @@ export async function renderMap(root, data) {
     const area = mission.explorationArea === undefined ? region : mission.explorationArea;
     const p = area && projectPoint(area.latitude, area.longitude, bounds, width, height);
     if (!p || p.x < 0 || p.x > width || p.y < 0 || p.y > height || !Number.isFinite(area.radiusMeters) || area.radiusMeters <= 0) throw new Error(`Invalid exploration area for ${mission.id}`);
-    if (!/^assets\/[a-z0-9-]+\.(svg|jpg|jpeg|png|webp)$/.test(mission.image)) throw new Error('Invalid map clue image');
+    if (!/^assets\/(?:[a-z0-9-]+\/)*[a-z0-9-]+\.(svg|jpg|jpeg|png|webp)$/.test(mission.image)) throw new Error('Invalid map clue image');
     const bytes = await readFile(join(root, 'public', mission.image));
     const extension = mission.image.split('.').at(-1);
     const mime = {svg:'image/svg+xml',jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',webp:'image/webp'}[extension];
