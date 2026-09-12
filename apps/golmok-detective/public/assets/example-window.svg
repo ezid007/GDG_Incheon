@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="title desc">
+  <title id="title">가상 골목의 원형 창문</title>
+  <desc id="desc">벽돌 건물의 위쪽 가운데에 십자 칸막이가 있는 커다란 원형 창문이 있다. 아래쪽에는 두 개의 사각 창문과 출입문이 있다. 실제 장소가 아닌 관찰 게임용 예시 그림이다.</desc>
+  <rect width="640" height="400" fill="#f4f1e8"/>
+  <path d="M0 306 100 275 190 307 266 280 414 292 540 267 640 305V400H0Z" fill="#e4e6d7"/>
+  <path d="M28 331H612M94 359H548M220 385H430" fill="none" stroke="#c9cfba" stroke-width="2"/>
+  <path d="M123 347V101L320 47 517 101V347Z" fill="#b73b29"/>
+  <path d="M139 109 320 61 501 109" fill="none" stroke="#23372e" stroke-width="10" stroke-linecap="square"/>
+  <path d="M146 116H494M146 178H494M146 202H494M146 225H494M146 248H494M146 272H494M146 295H494M146 319H494M181 116V139M220 139V162M174 178V202M249 178V202M392 178V202M461 178V202M148 225V248M491 225V248M162 272V295M478 272V295M181 319V343M461 319V343" fill="none" stroke="#cb6550" stroke-width="2" opacity=".85"/>
+  <circle cx="320" cy="142" r="45" fill="#f4f1e8"/>
+  <circle cx="320" cy="142" r="34" fill="#92a28a" stroke="#23372e" stroke-width="4"/>
+  <path d="M286 142H354M320 108V176" stroke="#23372e" stroke-width="5"/>
+  <path d="M297 126 309 114M334 162 344 152" fill="none" stroke="#f4f1e8" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+  <g fill="#f4f1e8">
+    <path d="M168 218H253V307H168Z"/>
+    <path d="M387 218H472V307H387Z"/>
+  </g>
+  <g fill="#92a28a" stroke="#23372e" stroke-width="4">
+    <path d="M180 229H241V295H180Z"/>
+    <path d="M399 229H460V295H399Z"/>
+  </g>
+  <path d="M210.5 229V295M180 260H241M429.5 229V295M399 260H460" stroke="#23372e" stroke-width="4"/>
+  <path d="M162 307H259M381 307H478" stroke="#23372e" stroke-width="8"/>
+  <rect x="285" y="235" width="70" height="112" fill="#23372e"/>
+  <rect x="297" y="247" width="46" height="54" fill="#f3d875"/>
+  <path d="M320 247V301" stroke="#23372e" stroke-width="4"/>
+  <path d="M337 316V327" stroke="#f3d875" stroke-width="4" stroke-linecap="round"/>
+  <path d="M272 348H367" stroke="#23372e" stroke-width="8"/>
+  <path d="M73 339V280M73 315Q44 301 43 278Q73 280 73 308M73 299Q99 283 98 260Q72 266 73 292" fill="#849980" stroke="#23372e" stroke-width="3"/>
+  <path d="M51 330H95L88 357H58Z" fill="#23372e"/>
+  <path d="M554 347V302M554 325Q525 312 528 289Q553 294 554 316M554 315Q582 299 581 278Q555 285 554 307" fill="#849980" stroke="#23372e" stroke-width="3"/>
+  <path d="M534 338H576L571 360H539Z" fill="#b73b29"/>
+</svg>

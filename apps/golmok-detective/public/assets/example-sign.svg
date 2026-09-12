@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="title desc">
+  <title id="title">가상 서점의 책 모양 간판</title>
+  <desc id="desc">크림색 가게 앞에 진한 녹색 간판이 있다. 간판 한가운데에는 양쪽 페이지와 글줄을 알아볼 수 있는 노란색 펼친 책 표식이 크게 그려져 있다. 실제 장소가 아닌 관찰 게임용 예시 그림이다.</desc>
+  <rect width="640" height="400" fill="#f4f1e8"/>
+  <path d="M0 311H640V400H0Z" fill="#e4e6d7"/>
+  <path d="M65 360H570M125 384H494" stroke="#c9cfba" stroke-width="2"/>
+  <path d="M107 341V81L146 61H494L533 81V341Z" fill="#ded3b7"/>
+  <path d="M107 87H533M127 76H513" stroke="#c6b995" stroke-width="3"/>
+  <rect x="154" y="99" width="332" height="110" rx="4" fill="#23372e"/>
+  <rect x="167" y="112" width="306" height="84" rx="2" fill="none" stroke="#92a28a" stroke-width="2"/>
+  <path d="M261 125Q292 119 320 137Q348 119 379 125V174Q347 168 320 185Q293 168 261 174Z" fill="#f3d875"/>
+  <path d="M320 137V184M274 137Q293 135 308 144M274 149Q293 147 308 156M332 144Q347 135 366 137M332 156Q347 147 366 149" fill="none" stroke="#23372e" stroke-width="4" stroke-linecap="round"/>
+  <path d="M135 219H505L520 252H120Z" fill="#f3d875" stroke="#23372e" stroke-width="3"/>
+  <path d="M162 219 153 252M204 219 198 252M248 219 244 252M292 219 291 252M336 219 337 252M380 219 384 252M424 219 430 252M466 219 475 252" stroke="#c4ab53" stroke-width="3"/>
+  <rect x="164" y="259" width="202" height="82" fill="#23372e"/>
+  <rect x="175" y="270" width="180" height="58" fill="#92a28a"/>
+  <path d="M266 270V328" stroke="#23372e" stroke-width="6"/>
+  <g stroke="#23372e" stroke-width="2">
+    <path d="M189 292H200V321H189Z" fill="#f3d875"/>
+    <path d="M204 285H218V321H204Z" fill="#f4f1e8"/>
+    <path d="M222 296H233V321H222Z" fill="#b73b29"/>
+    <path d="M283 295H298V321H283Z" fill="#f4f1e8"/>
+    <path d="M301 287H312V321H301Z" fill="#f3d875"/>
+    <path d="M315 298 326 294 336 319 325 323Z" fill="#b73b29"/>
+  </g>
+  <path d="M174 322H355" stroke="#23372e" stroke-width="5"/>
+  <rect x="392" y="259" width="81" height="82" fill="#23372e"/>
+  <rect x="403" y="270" width="59" height="42" fill="#f4f1e8"/>
+  <path d="M452 323H459" stroke="#f3d875" stroke-width="4" stroke-linecap="round"/>
+  <path d="M385 345H480" stroke="#23372e" stroke-width="7"/>
+  <path d="M73 338V287M73 318Q49 306 49 284Q73 288 73 310M73 302Q94 289 94 266Q72 275 73 295" fill="#849980" stroke="#23372e" stroke-width="3"/>
+  <path d="M51 329H96L89 355H58Z" fill="#b73b29"/>
+  <path d="M551 342 561 280H599L609 342" fill="#23372e"/>
+  <path d="M567 286H593L600 328H561Z" fill="#f3d875"/>
+  <path d="M570 301H588M569 311H588" stroke="#23372e" stroke-width="3" stroke-linecap="round"/>
+</svg>

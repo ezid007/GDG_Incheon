@@ -1,0 +1,63 @@
+{
+  "version": "example-v1",
+  "title": "개항장 골목탐정",
+  "missions": [
+    {
+      "id": "round-window",
+      "sourceId": "EXAMPLE-WINDOW",
+      "sceneKind": "example",
+      "placeLabel": "가상 골목의 벽돌 건물",
+      "image": "assets/example-window.svg",
+      "imageAlt": "가상 벽돌 건물의 정면. 지붕 아래 가운데 창문 하나와 아래층 양옆 창문, 가운데 문이 있습니다. 위쪽 창틀의 윤곽을 관찰해 보세요.",
+      "question": "위쪽 가운데 창문의 바깥 테두리는 어떤 모양일까요?",
+      "options": [
+        { "id": "a", "label": "원형" },
+        { "id": "b", "label": "삼각형" },
+        { "id": "c", "label": "사각형" }
+      ],
+      "answerId": "a",
+      "hint": "아래쪽 창문보다 높이 있는 창문을 찾아보세요. 안쪽 칸막이 대신 바깥 테두리를 따라가면 보여요.",
+      "explanation": "위쪽 가운데 창문은 바깥 테두리가 둥근 원형이에요. 안쪽 칸막이가 십자로 나뉘어 있어도 전체 창문의 모양은 원이죠.",
+      "evidenceQuote": "가상 예시 그림에서 건물 위쪽 가운데에 원형 창문 1개가 보입니다.",
+      "evidence": { "x": 50, "y": 35.5 }
+    },
+    {
+      "id": "book-sign",
+      "sourceId": "EXAMPLE-SIGN",
+      "sceneKind": "example",
+      "placeLabel": "가상 골목의 작은 서점",
+      "image": "assets/example-sign.svg",
+      "imageAlt": "가상 가게의 진한 녹색 간판. 가운데 노란 표식은 중심을 기준으로 양옆으로 펼쳐져 있고 짧은 선이 여러 개 그려져 있습니다.",
+      "question": "가게 간판 가운데에는 무엇을 닮은 표식이 있을까요?",
+      "options": [
+        { "id": "a", "label": "책" },
+        { "id": "b", "label": "컵" },
+        { "id": "c", "label": "가위" }
+      ],
+      "answerId": "a",
+      "hint": "표식의 가운데를 기준으로 양옆에 펼쳐진 부분을 보세요. 그 안에 짧은 줄들이 있어요.",
+      "explanation": "간판에는 펼친 책이 그려져 있어요. 가운데 책등과 양옆의 페이지, 글줄처럼 놓인 짧은 선들이 단서예요.",
+      "evidenceQuote": "가상 예시 그림의 녹색 간판 가운데에 펼친 책 표식이 있습니다.",
+      "evidence": { "x": 50, "y": 37.5 }
+    },
+    {
+      "id": "rest-direction",
+      "sourceId": "EXAMPLE-DIRECTION",
+      "sceneKind": "example",
+      "placeLabel": "가상 골목의 쉼터 안내판",
+      "image": "assets/example-direction.svg",
+      "imageAlt": "가상 골목의 노란 안내판. 벤치 표식과 쉼터라는 글자가 있고 한쪽 끝이 뾰족한 화살표 모양입니다. 끝부분이 향하는 방향을 관찰해 보세요.",
+      "question": "쉼터 안내판의 화살표는 어느 쪽을 가리킬까요?",
+      "options": [
+        { "id": "a", "label": "왼쪽" },
+        { "id": "b", "label": "오른쪽" },
+        { "id": "c", "label": "직진" }
+      ],
+      "answerId": "b",
+      "hint": "안내판의 양 끝을 비교해 보세요. 뾰족하게 나온 끝이 향하는 쪽을 찾으면 돼요.",
+      "explanation": "안내판의 뾰족한 화살표 끝이 화면 오른쪽에 있어요. 이 가상 안내판은 쉼터가 오른쪽에 있다고 알려줘요.",
+      "evidenceQuote": "가상 예시 그림에서 ‘쉼터’ 안내판의 뾰족한 끝이 오른쪽을 향합니다.",
+      "evidence": { "x": 66, "y": 38.25 }
+    }
+  ]
+}
