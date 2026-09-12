@@ -59,6 +59,34 @@
         {"id": "c", "label": "5개"},
         {"id": "d", "label": "6개"}
       ]
+    },
+    {
+      "id": "taletown-mural",
+      "sourceId": "TEAM-TALETOWN-1",
+      "sceneKind": "field",
+      "explorationRegionId": "songwol",
+      "placeLabel": "송월동 동화마을의 하늘 나는 벽화",
+      "image": "assets/quiz/taletown/field-taletown-clue.jpg",
+      "quizImage": "assets/quiz/taletown/field-taletown-quiz.jpg",
+      "quizImageAlt": "동화마을 골목 벽화의 전체 모습. 하늘로 떠오르는 물건들이 그려져 있습니다. 현장에서 어떤 물건들이 날아다니는지 확인하세요.",
+      "imageAlt": "동화마을 벽화의 일부분. 알록달록한 배경 위로 떠 있는 물건의 한 조각이 보입니다.",
+      "hint": "벽화 속 하늘에 떠 있는 물건들을 하나씩 세어 보세요. 그려지지 않은 물건이 정답이에요.",
+      "explanation": "송월동 동화마을의 벽화에는 의자, 서랍, 우산이 하늘을 나는 모습이 그려져 있어요. 가방은 벽화 속 날아다니는 가구가 아닙니다.",
+      "evidenceQuote": "현장 벽화에는 의자, 서랍, 우산이 하늘에 떠 있고 가방은 보이지 않습니다.",
+      "evidence": {
+        "x": 50,
+        "y": 40
+      },
+      "quizKey": "tale-town-1",
+      "expectedAnswer": "가방",
+      "question": "벽화 속 하늘에 날아다니는 가구 중 아닌 것은?",
+      "options": [
+        {"id": "a", "label": "의자"},
+        {"id": "b", "label": "서랍"},
+        {"id": "c", "label": "우산"},
+        {"id": "d", "label": "가방"}
+      ],
+      "geoCoordinates": {"latitude": 37.477661, "longitude": 126.620583}
     }
   ],
   "examples": [
