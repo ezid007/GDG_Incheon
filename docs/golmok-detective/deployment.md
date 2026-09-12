@@ -2,6 +2,16 @@
 
 확인일: 2026-09-12 · 게임 버전: example-v1 · Node.js 표준 모듈만 사용
 
+## 팀원 GitHub Pages 배포
+
+두 협업자 모두 GitHub 초대를 수락했고 쓰기 권한이 있다. 개인 계정 저장소는 소유자와 협업자 두 단계여서 별도의 Pages 관리자 역할을 줄 수 없다. 소유자가 Pages 소스를 GitHub Actions로 설정하고, 협업자는 main에 코드를 푸시하거나 Actions의 `Deploy Golmok Detective` → `Run workflow`로 배포한다. 수동 실행은 main을 선택한다.
+
+워크플로: `.github/workflows/deploy-pages.yml`. Node 24에서 테스트·빌드 후 `apps/golmok-detective/public`만 업로드한다. 원본 자료·문서·로그는 사이트에 포함하지 않는다. 빌드는 contents:read, 배포는 pages:write와 id-token:write를 사용한다. 개인 API 토큰이나 계정 공유가 필요 없다.
+
+첫 실행의 성공 여부와 공개 URL은 실제 배포 후 이 문서에 갱신한다. 팀원 본인의 세션에서 직접 실행하는 검증은 별도다.
+
+공식 근거: [개인 저장소 권한](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/repository-access-and-collaboration/permission-levels-for-a-personal-account-repository), [Pages 사용자 정의 워크플로](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages), [쓰기 권한으로 수동 실행](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow).
+
 ## 현재 접속 주소
 
 [골목탐정 임시 웹](https://machines-ambien-wear-arab.trycloudflare.com)
