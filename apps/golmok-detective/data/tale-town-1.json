@@ -1,9 +1,0 @@
-{
-    "partPhoto": "public/images/quiz/tale-town-1/part-photo.jpg",
-    "hintPhoto": "public/images/quiz/tale-town-1/hint-photo.jpg",
-    "quizText": "옆에 날아다니는 가구중 아닌것은?",
-    "choices": ["의자", "서랍", "우산", "가방"],
-    "correctAnswerIndex": 3,
-    "answerExplanation": "인천 차이나타운 동화마을은 동화 속 환상적인 분위기를 재현한 곳으로, 비현실적인 환경 속에서도 가방은 날아다니는 가구가 아닙니다.",
-    "geoCoordinates": { "latitude": 37.484477, "longitude": 126.626986 }
-}
