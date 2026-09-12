@@ -1,5 +1,5 @@
 {
-  "version": "unified-pinocchio-v2",
+  "version": "scroll-pinocchio-v1",
   "title": "차이나타운 골목탐정",
   "reviews": [
     {
@@ -30,12 +30,12 @@
       "sourceId": "USER-20260912-PINOCCHIO-CONFIRMED",
       "sceneKind": "field",
       "explorationRegionId": "songwol",
-      "explorationDescription": "이 근처에서 사진처럼 벽에 그려진 푸른 무늬를 찾아보세요. 닮은 모양이 보이면 주변을 둘러보고 같은 장소인지 확인해요.",
+      "explorationDescription": "이 근처에서 사진 속 피노키오가 있는 장소를 찾아보세요. 분홍 하트와 주변 조형물을 살펴보고 같은 장소인지 확인해요.",
       "placeLabel": "동화 속 작은 무대",
       "image": "assets/field-pinocchio-clue.jpg",
-      "imageAlt": "흰 벽에 그려진 파란색 구름 모양 무늬 하나를 확대한 사진. 여러 갈래로 뻗은 선 앞에 흰 배관이 지나갑니다.",
+      "imageAlt": "분홍 하트 옆 피노키오와 사슴 조형물을 가까이 찍은 장소 찾기 사진. 피노키오 뒤 흰 벽은 일부만 보입니다.",
       "quizImage": "assets/field-pinocchio-quiz.jpg",
-      "quizImageAlt": "분홍 하트 옆의 피노키오와 사슴 조형물 근접 사진. 뒤쪽 흰 벽의 일부만 보이므로 전체 무늬 개수는 현장에서 둘러보며 확인하세요.",
+      "quizImageAlt": "피노키오 뒤 흰 벽에 그려진 파란 구름 모양 무늬 하나의 확대 사진. 이 모양을 기준으로 현장 벽에 있는 파란색 계열 무늬의 개수를 세어 보세요.",
       "answerImage": "assets/field-pinocchio-answer.jpg",
       "answerImageAlt": "피노키오 옆에서 뒤쪽 흰 벽을 가까이 찍은 정답 사진. 팔 뒤 작은 파란 무늬 2개, 배관 뒤 큰 무늬 1개, 위쪽 옅은 하늘색 1개, 지붕 아래 파란 무늬 1개가 보입니다. 분홍색 무늬는 세지 않습니다.",
       "hint": "사진 단서와 같은 파란색 계열 무늬만 세어 보세요. 피노키오 팔 뒤쪽과 벽 위쪽도 살펴보고, 옅은 하늘색을 놓치지 마세요. 갈라진 꼬리선이 아니라 무늬 한 덩어리를 1개로 세어요.",

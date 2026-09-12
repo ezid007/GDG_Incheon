@@ -21,7 +21,7 @@ function element(attributes = {}, reflectsHidden = true) {
   const classes = new Set((attributes.class ?? '').split(/\s+/).filter(Boolean));
   let hiddenProperty;
   return {
-    dataset: Object.fromEntries(Object.entries(attributes).filter(([key]) => key.startsWith('data-')).map(([key, value]) => [key.slice(5), value])),
+    dataset: Object.fromEntries(Object.entries(attributes).filter(([key]) => key.startsWith('data-')).map(([key, value]) => [key.slice(5).replace(/-([a-z])/g, (_, char) => char.toUpperCase()), value])),
     style: {}, children: [], textContent: '', disabled: false, clientWidth: 390, clientHeight: 440,
     get hidden() { return reflectsHidden ? attrs.has('hidden') : hiddenProperty; },
     set hidden(value) { if (!reflectsHidden) hiddenProperty = value; else if (value) attrs.set('hidden', ''); else attrs.delete('hidden'); },
@@ -38,6 +38,7 @@ function element(attributes = {}, reflectsHidden = true) {
     emit(name) { if (name !== 'click' || !this.disabled) handlers.get(name)?.(); },
     append(child) { this.children.push(child); },
     scrollTo(options) { this.lastScroll = options; },
+    scrollIntoView(options) { this.lastIntoView = options; },
   };
 }
 
@@ -47,7 +48,8 @@ function page({ secure = true, supported = true, throwing = false, search = '', 
   const config = JSON.parse(controller.match(/const MAP = (\{[^\n]+\});/)[1]);
   const nodes = new Map();
   for (const tag of markup.matchAll(/<[a-z][^>]*\bid="[^"]+"[^>]*>/gi)) {
-    const attributes = Object.fromEntries([...tag[0].matchAll(/([\w-]+)="([^"]*)"/g)].map(match => [match[1], match[2]]));
+    const decode = value => value.replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+    const attributes = Object.fromEntries([...tag[0].matchAll(/([\w-]+)="([^"]*)"/g)].map(match => [match[1], decode(match[2])]));
     if (/\shidden(?:\s|>)/.test(tag[0])) attributes.hidden = '';
     nodes.set(attributes.id, element(attributes, !/^<g\b/i.test(tag[0])));
   }
@@ -61,7 +63,8 @@ function page({ secure = true, supported = true, throwing = false, search = '', 
     getElementById: id => { assert.ok(nodes.has(id), `unexpected DOM lookup: ${id}`); return nodes.get(id); },
     createElement: () => element(),
     querySelectorAll: selector => {
-      if (selector === '[data-quiz]') return nodes.get('region-buttons').children;
+      if (selector === '[data-quiz]') return [...nodes.values()].filter(node => node.dataset.quiz);
+      if (selector === '[data-quiz-card]') return [...nodes.values()].filter(node => node.dataset.quizCard);
       if (selector === '[data-zone]') return [...nodes.values()].filter(node => node.dataset.zone);
       throw new Error(`unexpected selector: ${selector}`);
     },
@@ -252,99 +255,115 @@ test('a synchronous geolocation failure clears timers and restores the button', 
   assert.match(ui.message(), /실행하지 못/);
 });
 
-test('a quiz query selects only its search circle and corresponding field and demo links', () => {
+function assertCardsVisible(ui, quizzes = config.quizzes) {
+  assert.equal(ui.document.querySelectorAll('[data-quiz-card]').length, quizzes.length);
+  for (const quiz of quizzes) {
+    assert.equal(ui.get('quiz-card-' + quiz.id).hasAttribute('hidden'), false);
+    assert.equal(ui.get('quiz-clue-' + quiz.id).hasAttribute('hidden'), false);
+    assert.equal(ui.get('quiz-clue-' + quiz.id).src, quiz.clueImage);
+    assert.equal(ui.get('field-quiz-' + quiz.id).getAttribute('href'), './?play=field&quiz=' + encodeURIComponent(quiz.id));
+    assert.equal(ui.get('demo-arrival-' + quiz.id).getAttribute('href'), './?demo=arrival&quiz=' + encodeURIComponent(quiz.id));
+  }
+}
+
+test('a quiz query focuses its card and map circle while keeping every first-stage card visible', () => {
   for (const quiz of config.quizzes) {
     const ui = page({ search: '?quiz=' + encodeURIComponent(quiz.id) });
-    assert.equal(ui.get('region-title').textContent, '문제 ' + quiz.number + ' · 장소 찾기');
-    assert.equal(ui.get('region-description').textContent, quiz.description);
-    assert.equal(ui.get('field-quiz').getAttribute('href'), './?play=field&quiz=' + encodeURIComponent(quiz.id));
-    assert.equal(ui.get('demo-arrival').getAttribute('href'), './?demo=arrival&quiz=' + encodeURIComponent(quiz.id));
+    assertCardsVisible(ui);
+    assert.equal(ui.get('map-question-title').textContent, '문제 ' + quiz.number + ' · 탐색 지도');
+    assert.equal(ui.get('map-question-description').textContent, quiz.description);
+    assert.equal(ui.get('quiz-warning').hidden, true);
+    assert.equal(ui.get('quiz-card-' + quiz.id).lastIntoView.block, 'start');
     for (const item of config.quizzes) {
       const zone = ui.get('zone-' + item.id);
       assert.equal(zone.hasAttribute('hidden'), item.id !== quiz.id, 'SVG visibility must change through its hidden attribute');
       assert.equal(zone.classList.contains('is-active'), item.id === quiz.id);
-    }
-    for (const button of ui.get('region-buttons').children) {
-      assert.equal(button.getAttribute('aria-pressed'), String(button.dataset.quiz === quiz.id));
+      assert.equal(ui.get('map-button-' + item.id).getAttribute('aria-pressed'), String(item.id === quiz.id));
     }
     assert.equal(ui.visible(), false);
     assert.equal(ui.requests.length, 0);
   }
 });
 
-test('legacy region links select a matching quiz or the first authored quiz', () => {
+test('legacy region links focus a matching authored card without a region chooser', () => {
   for (const search of ['', '?region=', '?region=unknown', '?region=songwol', '?region=chinatown']) {
     const legacyRegion = new URLSearchParams(search).get('region');
     const expected = config.quizzes.find(quiz => quiz.regionId === legacyRegion) || config.quizzes[0];
     const ui = page({ search });
-    assert.equal(ui.get('region-title').textContent, '문제 ' + expected.number + ' · 장소 찾기');
-    assert.equal(ui.get('demo-arrival').getAttribute('href'), './?demo=arrival&quiz=' + encodeURIComponent(expected.id));
+    assertCardsVisible(ui);
+    assert.equal(ui.get('map-question-title').textContent, '문제 ' + expected.number + ' · 탐색 지도');
+    assert.equal(ui.get('quiz-warning').hidden, true);
+    if (search) assert.equal(ui.get('quiz-card-' + expected.id).lastIntoView.block, 'start');
     assert.equal(ui.visible(), false);
     assert.equal(ui.requests.length, 0);
   }
 });
 
-test('an explicit missing or ambiguous quiz never silently opens a different question', () => {
+test('an explicit missing or ambiguous quiz shows a recoverable warning without hiding valid cards', () => {
   for (const search of ['?quiz=', '?quiz=unknown', '?quiz=%22%3E%3Cscript%3E', '?quiz=unknown&region=chinatown', '?quiz=' + config.quizzes[0].id + '&quiz=unknown']) {
     const ui = page({ search });
-    assert.equal(ui.get('field-play').hidden, true);
-    assert.equal(ui.get('demo-panel').hidden, true);
-    assert.equal(ui.get('region-clue').hidden, true);
-    assert.equal(ui.get('field-quiz').getAttribute('href'), null);
-    assert.equal(ui.get('demo-arrival').getAttribute('href'), null);
-    assert.match(ui.get('region-description').textContent, /문제를 찾지 못/);
+    assertCardsVisible(ui);
+    assert.equal(ui.get('quiz-warning').hidden, false);
+    assert.match(ui.get('quiz-warning').textContent, /문제를 찾지 못/);
+    assert.equal(ui.get('map-question-title').textContent, '탐색 지도');
     for (const quiz of config.quizzes) assert.equal(ui.get('zone-' + quiz.id).hasAttribute('hidden'), true);
-    ui.get('region-buttons').children[0].emit('click');
-    assert.equal(ui.get('field-play').hidden, false, 'the problem list can recover from a stale link');
+    ui.get('map-button-' + config.quizzes[0].id).emit('click');
+    assert.equal(ui.get('quiz-warning').hidden, true);
+    assert.equal(ui.get('shared-map').lastIntoView.block, 'start');
+    assertCardsVisible(ui);
   }
 });
 
-test('changing the quiz updates its links without changing a measured GPS location', async () => {
+test('each map button scrolls to the one shared map without dropping cards or changing GPS', async () => {
   const first = source.missions.find(mission => mission.sceneKind === 'field');
   const fixture = { ...source, missions: [first, { ...first, id: 'second-field-mission', explorationRegionId: 'songwol', explorationDescription: '두 번째 사진의 장소를 찾아보세요.' }] };
   const markup = await renderMap(appRoot, fixture);
+  const generated = JSON.parse(markup.match(/const MAP = (\{[^\n]+\});/)[1]);
   const ui = page({ markup });
   ui.click();
   ui.requests[0].success(ui.position());
   const measuredTransform = ui.get('user-location').getAttribute('transform');
   const measuredMessage = ui.message();
-  assert.equal(ui.get('region-buttons').children.length, 2);
-  for (const [index, button] of ui.get('region-buttons').children.entries()) {
-    button.emit('click');
-    assert.equal(button.textContent, '문제 ' + (index + 1));
-    assert.equal(ui.get('region-title').textContent, '문제 ' + (index + 1) + ' · 장소 찾기');
-    assert.equal(ui.get('field-quiz').getAttribute('href'), './?play=field&quiz=' + encodeURIComponent(button.dataset.quiz));
-    assert.equal(ui.get('demo-arrival').getAttribute('href'), './?demo=arrival&quiz=' + encodeURIComponent(button.dataset.quiz));
-    for (const mission of fixture.missions) assert.equal(ui.get('zone-' + mission.id).hasAttribute('hidden'), mission.id !== button.dataset.quiz);
+  for (const quiz of generated.quizzes) {
+    ui.get('map-button-' + quiz.id).emit('click');
+    assertCardsVisible(ui, generated.quizzes);
+    assert.equal(ui.get('map-question-title').textContent, '문제 ' + quiz.number + ' · 탐색 지도');
+    assert.equal(ui.get('shared-map').lastIntoView.block, 'start');
+    for (const mission of fixture.missions) assert.equal(ui.get('zone-' + mission.id).hasAttribute('hidden'), mission.id !== quiz.id);
     assert.equal(ui.get('user-location').getAttribute('transform'), measuredTransform);
     assert.equal(ui.visible(), true);
     assert.equal(ui.message(), measuredMessage);
     assert.equal(ui.requests.length, 1);
   }
+  assert.equal([...markup.matchAll(/id="shared-map"/g)].length, 1);
+  assert.equal([...markup.matchAll(/id="locate"/g)].length, 1);
 });
 
-test('only authored field missions become numbered map problems and cropped photo clues', async () => {
+test('all authored first-stage images and per-card links appear in order before the shared map', async () => {
   const missions = source.missions.filter(mission => mission.sceneKind === 'field');
   assert.deepEqual(config.quizzes.map(quiz => quiz.id), missions.map(mission => mission.id));
   const ui = page();
-  assert.equal(ui.get('region-buttons').children.length, missions.length);
+  assertCardsVisible(ui);
+  let previous = -1;
   for (const [index, mission] of missions.entries()) {
     const quiz = config.quizzes[index];
-    ui.get('region-buttons').children[index].emit('click');
+    const cardPosition = html.indexOf('id="quiz-card-' + mission.id + '"');
+    assert.ok(cardPosition > previous);
+    assert.ok(cardPosition < html.indexOf('id="shared-map"'));
+    previous = cardPosition;
     assert.equal(quiz.number, index + 1);
-    assert.equal(ui.get('field-play').hidden, false);
-    assert.equal(ui.get('demo-panel').hidden, false);
-    assert.equal(ui.get('region-clue').hidden, false);
-    assert.equal(ui.get('region-clue').alt, mission.imageAlt);
+    assert.ok(html.includes('<p class="panel-label">문제 ' + quiz.number + '</p>'));
+    assert.ok(html.includes('id="quiz-title-' + mission.id + '">1차 · 장소 찾기 사진</h2>'));
+    assert.equal(ui.get('quiz-clue-' + mission.id).alt, mission.imageAlt);
     const bytes = await readFile(new URL('../public/' + mission.image, import.meta.url));
-    assert.equal(ui.get('region-clue').src.split(',')[1], bytes.toString('base64'));
-    assert.equal(ui.visible(), false);
-    assert.equal(ui.requests.length, 0);
+    assert.equal(ui.get('quiz-clue-' + mission.id).src.split(',')[1], bytes.toString('base64'));
   }
-  assert.equal(config.regions, undefined, 'internal district definitions do not become public navigation tabs');
+  assert.equal(config.regions, undefined);
+  assert.equal(html.includes('region-buttons'), false);
+  assert.equal(html.includes('<aside'), false);
 });
 
-test('the map does not embed second-stage quiz or answer images for a field mission', async () => {
+test('the map never embeds second-stage quiz or answer images in the first-stage feed', async () => {
   for (const mission of source.missions.filter(item => item.sceneKind === 'field')) {
     for (const imagePath of [mission.quizImage, mission.answerImage].filter(Boolean)) {
       const bytes = await readFile(new URL('../public/' + imagePath, import.meta.url));
@@ -354,16 +373,15 @@ test('the map does not embed second-stage quiz or answer images for a field miss
   }
 });
 
-test('an empty authored problem list leaves the map and GPS usable without arrival buttons', async () => {
+test('an empty authored problem list leaves the shared map and GPS usable without quiz links', async () => {
   const markup = await renderMap(appRoot, { ...source, missions: source.missions.filter(mission => mission.sceneKind !== 'field') });
   const ui = page({ markup, search: '?quiz=missing' });
-  assert.equal(ui.get('region-buttons').children.length, 0);
-  assert.equal(ui.get('field-play').hidden, true);
-  assert.equal(ui.get('demo-panel').hidden, true);
-  assert.equal(ui.get('region-clue').hidden, true);
-  assert.match(ui.get('region-description').textContent, /아직 등록된 현장 문제가 없어요/);
-  assert.equal(ui.get('field-quiz').getAttribute('href'), null);
-  assert.equal(ui.get('demo-arrival').getAttribute('href'), null);
+  assert.equal(ui.document.querySelectorAll('[data-quiz-card]').length, 0);
+  assert.ok(ui.get('quiz-empty'));
+  assert.match(markup, /아직 등록된 현장 문제가 없어요/);
+  assert.equal(markup.includes('href="./?play=field'), false);
+  assert.equal(markup.includes('href="./?demo=arrival'), false);
+  assert.equal(ui.get('quiz-warning').hidden, true);
   ui.get('zoom-in').emit('click');
   ui.get('fit').emit('click');
   ui.click();
@@ -371,7 +389,7 @@ test('an empty authored problem list leaves the map and GPS usable without arriv
   assert.equal(ui.visible(), true);
 });
 
-test('multiple missions in one district keep distinct areas, descriptions and quiz selection', async () => {
+test('multiple cards in one district keep distinct areas, descriptions and query selection', async () => {
   const first = source.missions.find(mission => mission.sceneKind === 'field');
   const area = { latitude: 37.477, longitude: 126.620, radiusMeters: 85 };
   const second = { ...first, id: 'second-same-district', explorationArea: area, explorationDescription: '두 번째 문제 전용 탐색 설명' };
@@ -383,11 +401,12 @@ test('multiple missions in one district keep distinct areas, descriptions and qu
   assert.ok(Math.abs(generated.quizzes[1].y - (config.bounds.north - area.latitude) / (config.bounds.north - config.bounds.south) * config.height) < 0.01);
   assert.notEqual(generated.quizzes[0].radius, generated.quizzes[1].radius);
   const ui = page({ markup, search: '?quiz=second-same-district&region=chinatown' });
-  assert.equal(ui.get('region-title').textContent, '문제 2 · 장소 찾기');
-  assert.equal(ui.get('region-description').textContent, second.explorationDescription);
+  assertCardsVisible(ui, generated.quizzes);
+  assert.equal(ui.get('map-question-title').textContent, '문제 2 · 탐색 지도');
+  assert.equal(ui.get('map-question-description').textContent, second.explorationDescription);
   assert.equal(ui.get('zone-' + first.id).hasAttribute('hidden'), true);
   assert.equal(ui.get('zone-' + second.id).hasAttribute('hidden'), false);
-  assert.equal(ui.get('field-quiz').getAttribute('href'), './?play=field&quiz=second-same-district');
+  assert.equal(ui.get('quiz-card-' + second.id).lastIntoView.block, 'start');
 });
 
 test('invalid mission-specific exploration areas fail instead of inventing or snapping coordinates', async () => {
@@ -395,4 +414,15 @@ test('invalid mission-specific exploration areas fail instead of inventing or sn
   for (const area of [null, {}, {latitude:37.477,longitude:126.620,radiusMeters:0}, {latitude:37.477,longitude:126.620,radiusMeters:NaN}, {latitude:37.477,longitude:127,radiusMeters:100}, {latitude:'37.477',longitude:126.620,radiusMeters:100}]) {
     await assert.rejects(renderMap(appRoot, { ...source, missions: [{...first, explorationArea:area}] }), /Invalid exploration area/);
   }
+});
+
+test('authored descriptions and image captions are escaped in static cards', async () => {
+  const first = source.missions.find(mission => mission.sceneKind === 'field');
+  const mission = { ...first, explorationDescription: '<strong>먼저 & 둘째</strong>', imageAlt: '사진 "설명" <표식> & 확인' };
+  const markup = await renderMap(appRoot, { ...source, missions: [mission] });
+  assert.equal(markup.includes('<strong>먼저 & 둘째</strong>'), false);
+  assert.ok(markup.includes('&lt;strong&gt;먼저 &amp; 둘째&lt;/strong&gt;'));
+  const ui = page({ markup });
+  assert.equal(ui.get('quiz-clue-' + mission.id).alt, mission.imageAlt);
+  assert.equal(ui.get('map-question-description').textContent, mission.explorationDescription);
 });
