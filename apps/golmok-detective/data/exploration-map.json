@@ -1,0 +1,10 @@
+{
+  "version": "exploration-v1",
+  "bounds": {"west":126.615,"south":37.472,"east":126.624,"north":37.4805},
+  "width":1000,
+  "regions":[
+    {"id":"chinatown","letter":"A","name":"차이나타운 남쪽 골목","longitude":126.618776323953,"latitude":37.4735836355535,"radiusMeters":135,"ready":true,"description":"이 근처에서 사진 속 금빛 조각상이 있는 문을 찾아보세요. 장소를 찾으면 문 중앙의 현판을 살펴봐요.","source":"https://itour.incheon.go.kr/ssst/ssst/detail.do?cotId=ITD21121514191939746"},
+    {"id":"songwol","letter":"B","name":"동화마을 골목","longitude":126.619971883104,"latitude":37.4782594659769,"radiusMeters":110,"ready":false,"description":"색칠된 범위의 골목을 천천히 둘러보세요. 이 구역의 실제 문제는 준비 중이에요.","source":"https://itour.incheon.go.kr/ssst/ssst/detail.do?cotId=ITD22012113593866643"}
+  ],
+  "status":"field-and-preview"
+}
