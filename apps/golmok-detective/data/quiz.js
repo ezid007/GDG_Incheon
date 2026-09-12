@@ -37,6 +37,17 @@ const quizzes = [
         "apps/golmok-detective/data/quiz-images/inhwamun/answer-photo.jpg",
         { latitude: 37.473045, longitude: 126.6188592 },
         "apps/golmok-detective/data/quiz-images/inhwamun/quiz-photo.jpg"
+    ),
+    new Quiz(
+        "apps/golmok-detective/data/quiz-images/pinocchio-clouds/part-photo.jpg",
+        undefined,
+        "피노키오 뒤쪽 흰 벽면과 흰색 함의 문에 그려진 구름 모양 무늬는 모두 몇 개일까요?",
+        ["1. 3개", "2. 4개", "3. 5개", "4. 6개"],
+        3,
+        "흰 벽면의 진한 파랑, 위쪽 청록, 옅은 분홍, 옅은 민트와 흰색 함 위 분홍 무늬까지 모두 5개예요. 갈라진 꼬리선을 따로 세지 않고 무늬 한 덩어리를 1개로 세어요.",
+        "apps/golmok-detective/data/quiz-images/pinocchio-clouds/answer-photo.jpg",
+        undefined,
+        "apps/golmok-detective/data/quiz-images/pinocchio-clouds/quiz-photo.jpg"
     )
 ];
 

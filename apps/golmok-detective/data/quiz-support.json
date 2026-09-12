@@ -1,5 +1,5 @@
 {
-  "version": "unified-v1",
+  "version": "unified-pinocchio-v1",
   "title": "차이나타운 골목탐정",
   "reviews": [
     {
@@ -23,6 +23,26 @@
       "answerImageAlt": "황금빛 관문 전체 사진. 가운데 가로로 긴 회색 현판에 붉은 글씨로 仁華門이라고 적혀 있습니다.",
       "quizKey": "inhwamun",
       "expectedAnswer": "仁華門"
+    },
+    {
+      "id": "pinocchio-clouds",
+      "quizKey": "pinocchio-clouds",
+      "sourceId": "USER-20260912-PINOCCHIO",
+      "sceneKind": "field",
+      "explorationRegionId": "songwol",
+      "explorationDescription": "이 근처에서 사진처럼 벽에 그려진 푸른 무늬를 찾아보세요. 닮은 모양이 보이면 주변을 둘러보고 같은 장소인지 확인해요.",
+      "placeLabel": "동화 속 작은 무대",
+      "image": "assets/field-pinocchio-clue.jpg",
+      "imageAlt": "흰 벽에 그려진 파란색 구름 모양 무늬 하나를 확대한 사진. 여러 갈래로 뻗은 선 앞에 흰 배관이 지나갑니다.",
+      "quizImage": "assets/field-pinocchio-quiz.jpg",
+      "quizImageAlt": "분홍 하트 옆의 피노키오와 사슴 조형물 근접 사진. 뒤쪽 흰 벽의 일부만 보이므로 전체 무늬 개수는 현장에서 둘러보며 확인하세요.",
+      "answerImage": "assets/field-pinocchio-answer.jpg",
+      "answerImageAlt": "분홍 하트와 피노키오가 있는 무대 전체 사진. 피노키오 뒤 흰 벽과 흰색 함에 색이 다른 구름 모양 무늬 다섯 개가 보입니다.",
+      "hint": "피노키오 뒤의 흰 벽을 위에서 아래로 살펴봐요. 옅은색 무늬와 흰색 함의 문에 그려진 무늬도 포함해요. 갈라진 꼬리선 하나하나가 아니라 같은 모양 한 덩어리를 1개로 세어요.",
+      "explanation": "무늬는 모두 5개예요. 피노키오 오른쪽의 진한 파랑, 위쪽 청록과 옅은 분홍, 가운데 옅은 민트, 흰색 함 위 분홍 무늬를 하나씩 세어보세요.",
+      "evidenceQuote": "전체 사진에서 피노키오 뒤 흰 벽과 흰색 함의 표면을 함께 보면 같은 모양의 무늬 5개가 있습니다. 옅은색 무늬 2개를 놓치지 않도록 확대해서 확인하세요.",
+      "evidence": { "x": 74.1, "y": 48.2 },
+      "expectedAnswer": "5개"
     }
   ],
   "examples": [

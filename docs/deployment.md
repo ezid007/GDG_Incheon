@@ -84,3 +84,9 @@ cloudflared tunnel --url http://127.0.0.1:4179 --no-autoupdate --protocol http2
 - 로컬 빌드 성공, 72개 검사 중70통과·기존 AdGuard 응답 변경2실패. 지도18개·세션10개 포함 신규 검사는 통과했다. 320px 통합 지도, 선택 범위 표시, 문제별 완료와 목록 이동을 브라우저에서 확인했다. CI·공개 배포 결과는 다음 기록에서 확인한다.
 
 최종 확인: 코드 `f12fe15`의 [GitHub Actions](https://github.com/ezid007/GDG_Incheon/actions/runs/34673092862)에서 빌드·72개 검사·Pages 배포 모두 성공했다. 공개 Chrome에서 통합 문제 목록→선택한 탐색 원→일반 도착→2차 가림 사진·4지선다→정답 전체 사진→완료→문제 목록을 확인했다. 일반 완료 후 시연은 별도0/1진행으로 열린다. 공개390px와 로컬320·1280px에서 가로 넘침이 없었다. 기존 로컬AdGuard2실패는CI에서재현되지않았고 현장GPS오차확인만남아있다.
+
+## 피노키오 문제 추가 · unified-pinocchio-v1
+
+새문제장소찾기: https://ezid007.github.io/GDG_Incheon/map.html?quiz=pinocchio-clouds
+시연: https://ezid007.github.io/GDG_Incheon/?demo=arrival&quiz=pinocchio-clouds
+현재빌드의실제문제는2개이며자료버전변경으로이전진행과구분한다. 로컬390px에서사진공개시점과4지선다오답/정답처리확인. 새커밋의CI·Pages확인은아직대기상태다.
