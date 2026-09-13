@@ -51,9 +51,9 @@ node apps/golmok-detective/serve.mjs
 - 생성된 `public/index.html`, `public/map.html`은 직접 고치지 않고 템플릿·데이터 수정 후 빌드합니다. 사진과 지도는 HTML에 내장됩니다.
 - 사용하지 않는 이전 사진은 `reference/unused-photos/`에 보존합니다. 이 폴더는 공개 배포물에 포함되지 않습니다.
 
-[문서 길잡이](docs/README.md) · [다음 작업 방식](docs/development-workflow.md) · [이번 정리 내역](docs/cleanup-2026-09-13.md)
+[문서 길잡이](docs/README.md) · [다음 작업 방식](docs/development-workflow.md) · [구현 안내](docs/implementation.md)
 
-현재 작업 계획은 루트 `PLAN.md` 하나에서 관리합니다. 현재 설명은 `docs/`, 이전 기술 기록은 `docs/archive/`에 구분합니다. 문서는 기능·구현·실행·검증 내용으로 한정합니다.
+현재 작업 계획은 루트 `PLAN.md` 하나에서 관리합니다. `docs/`에는 최신 문서만 두고 기존 파일을 직접 갱신합니다. 이전 버전은 Git 이력으로 확인하며 문서는 기능·구현·실행·검증 내용으로 한정합니다.
 
 ## 검증
 

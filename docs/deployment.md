@@ -43,6 +43,4 @@ Pages 업로드 대상은 `apps/golmok-detective/public/`입니다. HTML과 사�
 
 빌드·검사 성공, 배포할 변경 범위 확인, Actions 배포 성공, 공개 주소의 실제 화면 확인을 구분합니다. 로컬 화면이나 푸시 성공만으로 배포 완료라고 판단하지 않습니다. 캐시가 의심되면 새로고침과 버전 쿼리로 비교하되 공유할 기본 주소에는 검사 쿼리를 남기지 않습니다.
 
-이전 Quick Tunnel 주소는 현재 운영 경로가 아닙니다. 과거 주소·배포·검사 결과는 [보관 문서](archive/2026-09-13-before-cleanup/deployment.md)에만 남깁니다.
-
 [개발 작업 가이드](development-workflow.md) · [워크플로 소스](../.github/workflows/deploy-pages.yml) · [자동 검사 소스](../.github/workflows/check.yml)

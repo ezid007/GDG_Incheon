@@ -45,4 +45,4 @@
 
 화면은 서 126.615 / 남 37.472 / 동 126.624 / 북 37.4805를 포함하며 북쪽이 위입니다. 외부 지도 타일이나 지도 API 키를 사용하지 않습니다. 도로의 접근 제한 표식을 일부 반영하지만 실제 통행을 보증하지는 않습니다.
 
-[문제 작성 안내](mission-authoring.md) · [개발·검증 순서](development-workflow.md) · [이전 지도 기록](archive/2026-09-13-before-cleanup/map.md)
+[문제 작성 안내](mission-authoring.md) · [개발·검증 순서](development-workflow.md) · [문제별 검수 근거](field-missions.md)
