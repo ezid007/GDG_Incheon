@@ -10,12 +10,14 @@ import { createGameServer } from '../serve.mjs';
 let root;
 let server;
 let port;
+const sharePhoto = Buffer.from([0xff, 0xd8, 0xff, 0xe0, 0x00, 0x01, 0xff, 0xd9]);
 
 before(async () => {
   root = await mkdtemp(join(tmpdir(), 'golmok-server-test-'));
   await mkdir(join(root, 'assets'));
   await writeFile(join(root, 'index.html'), '<!doctype html><h1>골목탐정</h1>');
   await writeFile(join(root, 'map.html'), '<!doctype html><h1>탐색 지도</h1>');
+  await writeFile(join(root, 'assets', 'share-qr-20260913.jpg'), sharePhoto);
   for (const name of ['window', 'sign', 'direction']) {
     await writeFile(join(root, 'assets', `example-${name}.svg`), '<svg xmlns="http://www.w3.org/2000/svg"></svg>');
   }
@@ -98,6 +100,21 @@ test('POST is refused with an explicit Allow header', async () => {
   const result = await request('/', 'POST');
   assert.equal(result.status, 405);
   assert.equal(result.headers.allow, 'GET, HEAD');
+});
+
+test('the share photo route preserves binary bytes and returns image metadata for GET and HEAD', async () => {
+  const handler = server.listeners('request')[0];
+  for (const method of ['GET', 'HEAD']) {
+    const result = {};
+    await handler({ method, url: '/assets/share-qr-20260913.jpg?v=1' }, {
+      writeHead(status, headers) { Object.assign(result, { status, headers }); },
+      end(body) { result.body = body; },
+    });
+    assert.equal(result.status, 200);
+    assert.equal(result.headers['Content-Type'], 'image/jpeg');
+    assert.equal(result.headers['Content-Length'], sharePhoto.length);
+    assert.deepEqual(result.body, method === 'GET' ? sharePhoto : undefined);
+  }
 });
 
 test('existing unlisted files, directories, and project-private paths are not public', async () => {

@@ -4,6 +4,8 @@
 
 [게임 웹사이트](https://ezid007.github.io/GDG_Incheon/) · [문제 목록과 지도](https://ezid007.github.io/GDG_Incheon/map.html)
 
+게임 주소를 공유하면 제공받은 QR 사진을 미리보기로 사용합니다. [QR 사진 원본](https://ezid007.github.io/GDG_Incheon/assets/share-qr-20260913.jpg). 미리보기 반영 시점과 표시 방식은 공유 앱에 따라 다를 수 있습니다.
+
 콘텐츠 버전: `unified-three-missions-v1`. 실제 문제 3개가 한 지도와 세로 목록에 표시되며, 가상 예시 3개는 실제 목록에서 제외됩니다.
 
 ## 플레이 흐름

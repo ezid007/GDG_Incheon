@@ -2,13 +2,25 @@
 
 ## 현재 상태 · 2026-09-13
 
-**사용자 요청으로 GitHub Pages는 게시 중단되어 있고 Deploy Golmok Detective 워크플로는 수동 비활성화 상태입니다.** refactoring 통합은 코드 병합·푸시만 수행합니다. 아래의 공개 URL·배포 성공 기록은 과거 상태이며 현재 서비스 중이라는 뜻이 아닙니다. 이번 버전 `unified-three-missions-v1`은 로컬로 확인하며 재게시를 요청받기 전까지 배포를 재개하지 않습니다.
+**GitHub Pages는 다시 공개되어 있습니다.** [게임 공개 주소](https://ezid007.github.io/GDG_Incheon/)의 HTTPS GET 200과 브라우저의 문제 3개 표시를 확인했습니다. GitHub 공개 API에서 `.github/workflows/deploy-pages.yml`의 상태도 `active`로 확인했습니다. 이 확인은 현재 게임 접속에 대한 것이며, 아래 QR 공유 이미지와 메타데이터의 공개 반영은 아직 진행 중입니다.
 
-로컬 실행은 아래 명령을 따릅니다. 이번 병합본 미리보기 포트는 4184이며 노트북에서만 열립니다. 기존 Quick Tunnel 주소는 현재 사용하지 않습니다. 사진은 HTML에 내장되고 공개 대상 폴더는 그대로 public입니다.
+로컬 실행은 아래 명령을 따릅니다. 기존 Quick Tunnel 주소는 현재 사용하지 않습니다. 게임 사진은 HTML에 내장되고 공개 대상 폴더는 `apps/golmok-detective/public`입니다.
+
+## QR 이미지 링크 미리보기 · 공개 반영 진행 중
+
+확인일: 2026-09-13 · 적용 대상: 게임 첫 화면과 `map.html` · 기존 Node.js 표준 모듈 구성 유지
+
+사용자가 제공한 원본 JPEG(1280×1280)를 변경 없이 `assets/share-qr-20260913.jpg`로 공개하고, 두 HTML의 Open Graph와 Twitter Card 메타데이터에서 동일한 이미지를 가리키도록 적용했습니다. 이미지 공개 예정 주소는 `https://ezid007.github.io/GDG_Incheon/assets/share-qr-20260913.jpg`이며, `og:image`, `og:image:type=image/jpeg`, 이미지 크기·대체 설명과 `twitter:card=summary`를 지정했습니다. 정사각형 원본에 맞춘 설정이며 실제 메신저의 카드 표시와 캐시 갱신은 아직 확인하지 않았습니다. Open Graph 설정 근거: [공식 문서](https://ogp.me/).
+
+로컬 코드·모바일 화면 검증과 전체 검사 76개를 통과했고, 공유 이미지와 업로드 원본의 SHA가 일치함을 확인했습니다. 이전 기록의 로컬 HTTP 검사 실패 2건은 이번 검사에서 재현되지 않았습니다. 최종 이미지와 메타데이터의 공개 응답 확인은 배포 후 진행합니다.
+
+미리보기를 공유할 때는 [게임 직접 주소](https://ezid007.github.io/GDG_Incheon/)를 사용합니다. 원본 QR에 들어 있는 `https://q.me-qr.com/lylo99z2`는 `https://qr1.me-qr.com/ko/lylo99z2`의 광고·중간 화면으로 이동했고, 해당 화면의 **건너뛰다** 링크가 게임 직접 주소를 가리키는 것을 확인했습니다. QR 중간 사이트의 미리보기 메타데이터는 이 프로젝트에서 변경할 수 없습니다.
 
 ## 이전 배포 설정·검증 이력
 
 확인일: 2026-09-12 · 게임 버전: unified-pinocchio-v2 · Node.js 표준 모듈만 사용
+
+아래 배포·검증 결과는 각 작업 당시의 기록입니다. 이후 사용자 요청으로 Pages 게시를 중단하고 워크플로를 수동 비활성화했던 시기가 있었으며, `unified-three-missions-v1` 통합 당시에는 로컬 포트 4184에서만 확인했습니다. 현재 공개 여부는 문서 상단의 2026-09-13 확인 결과를 따릅니다.
 
 ## 팀원 GitHub Pages 배포
 
@@ -53,11 +65,11 @@ cloudflared tunnel --url http://127.0.0.1:4179 --no-autoupdate --protocol http2
 
 ## 공개 범위와 백업
 
-서버는 게임 HTML, 지도 HTML과 명시된 예시 SVG 3개만 제공한다. 작업 문서, 로그, 인증 자료, 첨부 디렉터리는 제공하지 않는다. 지도 HTML은 실제 도로 SVG·구역·문제 단서 사진·위치 처리 코드를 내장한다. 게임 HTML에는 검토한 문제 사진과 정답 확인용 사진을 내장한다. 각 HTML은 그림·데이터·코드를 포함해 파일로도 열 수 있지만 현재 위치 기능은 HTTPS와 사용자 권한이 필요하다.
+서버는 게임 HTML, 지도 HTML과 명시된 예시 SVG 3개를 제공한다. 이번 공유 미리보기 작업에서는 원본 QR JPEG `/assets/share-qr-20260913.jpg` 1개만 허용 경로에 추가한다. 작업 문서, 로그, 인증 자료, 첨부 디렉터리는 제공하지 않는다. 지도 HTML은 실제 도로 SVG·구역·문제 단서 사진·위치 처리 코드를 내장한다. 게임 HTML에는 검토한 문제 사진과 정답 확인용 사진을 내장한다. 각 HTML은 그림·데이터·코드를 포함해 파일로도 열 수 있지만 현재 위치 기능은 HTTPS와 사용자 권한이 필요하다.
 
 제출 백업으로 작동 화면 녹화/캡처와 소스를 준비한다. 현장 휴대전화에서 재생 가능한지 확인한다. Drive 보관과 웹 공개는 별개다.
 
-## 검증 범위
+## 이전 배포 검증 범위
 
 - HTTPS GET: 200, 게임 제목·본문 확인.
 - 외부 HEAD: 200, HTML MIME, 본문 0바이트 확인.
@@ -82,7 +94,7 @@ cloudflared tunnel --url http://127.0.0.1:4179 --no-autoupdate --protocol http2
 
 2026-09-12 코드 커밋 `4deb9db`의 [GitHub Actions](https://github.com/ezid007/GDG_Incheon/actions/runs/34672204009)에서 68개 검사·빌드·배포가 성공했다. 로컬 응답 필터 실패2건은 CI에서 재현되지 않았다. 공개 HTTPS의 시작 버튼→1차 지도→일반 도착→2차 가림 사진·4지선다→정답 원본 사진·해설→완료를 브라우저에서 확인했다. 시연 주소는 별도 진행 0/1로 열리고 시연 안내가 표시된다. 브라우저 주소와 링크가 GitHub Pages 저장소 경로 아래에서 정상 연결된다. 현장 GPS 오차는 실제 휴대전화 확인이 남아 있다.
 
-## 현재 통합 배포 · unified-v1
+## 이전 통합 배포 · unified-v1
 
 - 통합 지도: https://ezid007.github.io/GDG_Incheon/map.html
 - 문제 1 장소 찾기: `map.html?quiz=inhwamun-plaque`

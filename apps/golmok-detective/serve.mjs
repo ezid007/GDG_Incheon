@@ -9,6 +9,7 @@ const ROUTES = new Map([
   ['/', ['index.html', 'text/html; charset=utf-8']],
   ['/index.html', ['index.html', 'text/html; charset=utf-8']],
   ['/map.html', ['map.html', 'text/html; charset=utf-8']],
+  ['/assets/share-qr-20260913.jpg', ['assets/share-qr-20260913.jpg', 'image/jpeg']],
   ['/assets/example-window.svg', ['assets/example-window.svg', 'image/svg+xml; charset=utf-8']],
   ['/assets/example-sign.svg', ['assets/example-sign.svg', 'image/svg+xml; charset=utf-8']],
   ['/assets/example-direction.svg', ['assets/example-direction.svg', 'image/svg+xml; charset=utf-8']],
