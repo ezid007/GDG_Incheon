@@ -2,9 +2,9 @@
 
 그림 지도와 사진 단서로 장소를 찾고, 현장에서 4지선다 문제를 푸는 모바일 골목 탐험 게임입니다.
 
-**2026-09-13: GitHub Pages는 게시 중단, 배포 워크플로는 비활성 상태입니다.** 저장소 코드의 병합·푸시와 웹 공개는 별개입니다. 이전 공개 주소 `https://ezid007.github.io/GDG_Incheon/`는 현재 접속용으로 안내하지 않습니다.
+[게임 웹사이트](https://ezid007.github.io/GDG_Incheon/) · [문제 목록과 지도](https://ezid007.github.io/GDG_Incheon/map.html)
 
-현재 콘텐츠 버전: `unified-three-missions-v1`. `main`의 첫 안내·공유 기능과 `refactoring`의 데이터·이미지 정리 및 동화마을 문제를 통합했습니다. 실제 문제 3개가 한 지도와 세로 목록에 표시되며, 가상 예시 3개는 실제 목록에서 제외됩니다.
+콘텐츠 버전: `unified-three-missions-v1`. 실제 문제 3개가 한 지도와 세로 목록에 표시되며, 가상 예시 3개는 실제 목록에서 제외됩니다.
 
 ## 플레이 흐름
 
@@ -46,7 +46,7 @@ node apps/golmok-detective/serve.mjs
 - `quiz-schema.mjs`는 입력을 검증하고, `load-quiz.mjs`는 기존 호환성을 위해 일반 객체를 반환합니다. JSON Schema와 `types.d.ts`는 작성·개발을 돕습니다.
 - 생성된 `public/index.html`, `public/map.html`은 직접 고치지 않고 템플릿·데이터 수정 후 빌드합니다. 사진과 지도는 HTML에 내장됩니다.
 
-[문제 작성 양식](docs/mission-authoring.md) · [미션 검수 기록](docs/field-missions.md) · [구현 안내](docs/implementation.md) · [배포 상태와 실행 안내](docs/deployment.md)
+[문제 작성 양식](docs/mission-authoring.md) · [미션 검수 기록](docs/field-missions.md) · [구현 안내](docs/implementation.md) · [실행·배포 안내](docs/deployment.md)
 
 ## 검증
 
@@ -54,6 +54,19 @@ node apps/golmok-detective/serve.mjs
 node --test apps/golmok-detective/tests/*.test.mjs
 ```
 
-2026-09-13 통합본: 빌드 성공, 로컬 75개 검사 중 73개 통과. 기존 AdGuard의 HTTP 응답 변경으로 서버 검사 2개가 실패하며 테스트를 삭제·완화하지 않았습니다. 클래스 객체와 일반 객체 비교에서 생긴 새 실패는 로더의 반환 계약을 복원해 해결했습니다. 문제 순서·사진 역할·정답·중복 검수 키·이미지 경로에 회귀 검사를 추가했습니다.
+검사는 문제 순서·사진 역할·정답·데이터 검증·게임 진행·지도·HTTP 응답을 확인합니다. 브라우저에서는 첫 안내→문제 목록→장소 도착→오답 재시도→정답·완료→목록 복귀를 확인합니다. 작은 화면의 가로 넘침, 이미지 로딩, 일반 플레이와 시연 기록 분리도 함께 확인합니다.
 
-브라우저에서 첫 안내→3문제 세로 목록→동화마을 시연의 오답·가방 정답→완료→목록 복귀, 일반 플레이 기록 분리, 320/390px 목록과 이미지 로딩을 확인했습니다. 1280px DOM 치수에서도 가로 넘침이 없었습니다. 이번 버전의 GitHub Actions와 공개 배포 검증은 배포 중단 상태를 유지하기 위해 실행하지 않았습니다. 실제 현장 GPS 정확도와 동화마을 벽화 전체 근거 사진은 추가 확인 사항입니다.
+실제 현장 GPS 정확도와 동화마을 벽화 전체 근거 사진은 추가 확인 사항입니다.
+
+## GitHub Pages 배포 방법
+
+1. 저장소의 **Actions → Deploy Golmok Detective**를 엽니다.
+2. 비활성화되어 있다면 **Enable workflow**를 누릅니다.
+3. **Run workflow**를 열어 브랜치 **main**을 선택한 뒤 실행합니다.
+4. 실행 목록 맨 위에서 방금 실행한 항목을 엽니다. 실행 시각과 브랜치 **main**, 대상 커밋을 확인해 과거 실행과 구분합니다.
+5. 실행 상세의 전체 결과가 **Success**이고 **build**, **deploy** 두 작업 모두 초록색 체크인지 확인합니다. build만 성공하거나 deploy가 Skipped인 경우 배포 완료가 아닙니다.
+6. 실행 요약의 **deploy / github-pages**에 표시된 배포 주소를 확인하고, 게임 웹사이트를 열어 반영된 내용도 확인합니다.
+
+GitHub에서 노란색은 대기·실행 중, 초록색 체크/Success는 성공, 빨간색/Failure는 실패를 뜻합니다. 실패한 작업을 클릭하면 단계별 로그를 볼 수 있습니다. 저장소 코드 화면의 커밋 체크나 오래된 성공 기록만으로 이번 배포 완료를 판단하지 않습니다.
+
+워크플로는 `.github/workflows/deploy-pages.yml`에 정의되어 있습니다. 활성화된 상태에서는 main의 게임 코드 또는 워크플로 파일 변경 시 자동 실행됩니다. README만 수정한 경우에는 자동 배포를 시작하지 않습니다. 실행 결과는 GitHub Actions에서 확인합니다.
