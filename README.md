@@ -53,7 +53,7 @@ node apps/golmok-detective/serve.mjs
 
 [문서 길잡이](docs/README.md) · [다음 작업 방식](docs/development-workflow.md) · [구현 안내](docs/implementation.md)
 
-현재 작업 계획은 루트 `PLAN.md` 하나에서 관리합니다. `docs/`에는 최신 문서만 두고 기존 파일을 직접 갱신합니다. 이전 버전은 Git 이력으로 확인하며 문서는 기능·구현·실행·검증 내용으로 한정합니다.
+현재 작업 계획은 루트 `PLAN.md` 하나에서 관리합니다. `docs/`에는 최신 문서만 두고 기존 파일을 직접 갱신합니다. 문서는 기능·구현·실행·검증 내용으로 한정합니다.
 
 ## 검증
 
