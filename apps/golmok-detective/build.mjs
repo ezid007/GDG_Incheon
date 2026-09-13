@@ -10,6 +10,7 @@ const data=await loadMissionData();
 validateMissionData(data);
 const assets={};
 const imagePaths=new Set(data.missions.flatMap(m=>[m.image,m.quizImage,m.answerImage].filter(path=>path!==undefined)));
+imagePaths.add('assets/share-qr-20260913.jpg');
 for(const imagePath of imagePaths){
   const bytes=await readFile(join(root,'public',imagePath));
   const ext=imagePath.split('.').at(-1);const mime={svg:'image/svg+xml',jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',webp:'image/webp'}[ext];
