@@ -2,19 +2,19 @@
 
 ## 현재 상태 · 2026-09-13
 
-**GitHub Pages는 다시 공개되어 있습니다.** [게임 공개 주소](https://ezid007.github.io/GDG_Incheon/)의 HTTPS GET 200과 브라우저의 문제 3개 표시를 확인했습니다. GitHub 공개 API에서 `.github/workflows/deploy-pages.yml`의 상태도 `active`로 확인했습니다. 이 확인은 현재 게임 접속에 대한 것이며, 아래 QR 공유 이미지와 메타데이터의 공개 반영은 아직 진행 중입니다.
+**GitHub Pages는 다시 공개되어 있습니다.** [게임 공개 주소](https://ezid007.github.io/GDG_Incheon/)의 HTTPS GET 200과 브라우저의 문제 3개 표시를 확인했습니다. GitHub 공개 API에서 `.github/workflows/deploy-pages.yml`의 상태도 `active`로 확인했습니다. QR 공유 이미지와 게임·지도 메타데이터의 공개 응답까지 확인했습니다.
 
 로컬 실행은 아래 명령을 따릅니다. 기존 Quick Tunnel 주소는 현재 사용하지 않습니다. 게임 사진은 HTML에 내장되고 공개 대상 폴더는 `apps/golmok-detective/public`입니다.
 
-## QR 이미지 링크 미리보기 · 공개 반영 진행 중
+## QR 이미지 링크 미리보기 · 공개 반영 완료
 
 확인일: 2026-09-13 · 적용 대상: 게임 첫 화면과 `map.html` · 기존 Node.js 표준 모듈 구성 유지
 
-사용자가 제공한 원본 JPEG(1280×1280)를 변경 없이 `assets/share-qr-20260913.jpg`로 공개하고, 두 HTML의 Open Graph와 Twitter Card 메타데이터에서 동일한 이미지를 가리키도록 적용했습니다. 이미지 공개 예정 주소는 `https://ezid007.github.io/GDG_Incheon/assets/share-qr-20260913.jpg`이며, `og:image`, `og:image:type=image/jpeg`, 이미지 크기·대체 설명과 `twitter:card=summary`를 지정했습니다. 정사각형 원본에 맞춘 설정이며 실제 메신저의 카드 표시와 캐시 갱신은 아직 확인하지 않았습니다. Open Graph 설정 근거: [공식 문서](https://ogp.me/).
+사용자가 제공한 원본 JPEG(1280×1280)를 변경 없이 `assets/share-qr-20260913.jpg`로 공개하고, 두 HTML의 Open Graph와 Twitter Card 메타데이터에서 동일한 이미지를 가리키도록 적용했습니다. 이미지 공개 주소는 `https://ezid007.github.io/GDG_Incheon/assets/share-qr-20260913.jpg`이며, `og:image`, `og:image:type=image/jpeg`, 이미지 크기·대체 설명과 `twitter:card=summary`를 지정했습니다. 정사각형 원본에 맞춘 설정이며 실제 메신저의 카드 표시와 캐시 갱신은 아직 확인하지 않았습니다. Open Graph 설정 근거: [공식 문서](https://ogp.me/).
 
-로컬 코드·모바일 화면 검증과 전체 검사 76개를 통과했고, 공유 이미지와 업로드 원본의 SHA가 일치함을 확인했습니다. 이전 기록의 로컬 HTTP 검사 실패 2건은 이번 검사에서 재현되지 않았습니다. 최종 이미지와 메타데이터의 공개 응답 확인은 배포 후 진행합니다.
+로컬 코드·모바일 화면 검증과 전체 검사 76개를 통과했고, 공유 이미지와 업로드 원본의 SHA가 일치함을 확인했습니다. 이전 기록의 로컬 HTTP 검사 실패 2건은 이번 검사에서 재현되지 않았습니다. 코드 `53af4e5`의 [GitHub Actions 실행](https://github.com/ezid007/GDG_Incheon/actions/runs/34742507232)에서 빌드·검사·배포가 모두 성공했습니다. 공개 게임·지도·QR 이미지 모두 GET 200, 메타데이터 주소·MIME·1280×1280 크기와 원본 SHA 일치를 확인했습니다. 공개 모바일 화면의 깨진 이미지·가로 넘침·JavaScript 오류도 없었습니다.
 
-미리보기를 공유할 때는 [게임 직접 주소](https://ezid007.github.io/GDG_Incheon/)를 사용합니다. 원본 QR에 들어 있는 `https://q.me-qr.com/lylo99z2`는 `https://qr1.me-qr.com/ko/lylo99z2`의 광고·중간 화면으로 이동했고, 해당 화면의 **건너뛰다** 링크가 게임 직접 주소를 가리키는 것을 확인했습니다. QR 중간 사이트의 미리보기 메타데이터는 이 프로젝트에서 변경할 수 없습니다.
+미리보기를 공유할 때는 [게임 직접 주소](https://ezid007.github.io/GDG_Incheon/)를 사용합니다. 원본 QR에 들어 있는 `https://q.me-qr.com/lylo99z2`는 `https://qr1.me-qr.com/ko/lylo99z2`의 광고·중간 화면으로 이동했고, 해당 화면의 **건너뛰다** 링크를 눌러 게임 직접 주소와 첫 안내 화면까지 열리는 것을 확인했습니다. QR 중간 사이트의 미리보기 메타데이터는 이 프로젝트에서 변경할 수 없습니다.
 
 ## 이전 배포 설정·검증 이력
 
@@ -65,7 +65,7 @@ cloudflared tunnel --url http://127.0.0.1:4179 --no-autoupdate --protocol http2
 
 ## 공개 범위와 백업
 
-서버는 게임 HTML, 지도 HTML과 명시된 예시 SVG 3개를 제공한다. 이번 공유 미리보기 작업에서는 원본 QR JPEG `/assets/share-qr-20260913.jpg` 1개만 허용 경로에 추가한다. 작업 문서, 로그, 인증 자료, 첨부 디렉터리는 제공하지 않는다. 지도 HTML은 실제 도로 SVG·구역·문제 단서 사진·위치 처리 코드를 내장한다. 게임 HTML에는 검토한 문제 사진과 정답 확인용 사진을 내장한다. 각 HTML은 그림·데이터·코드를 포함해 파일로도 열 수 있지만 현재 위치 기능은 HTTPS와 사용자 권한이 필요하다.
+서버는 게임 HTML, 지도 HTML과 명시된 예시 SVG 3개를 제공한다. 이번 공유 미리보기 작업에서는 원본 QR JPEG `/assets/share-qr-20260913.jpg` 1개만 허용 경로에 추가했다. 작업 문서, 로그, 인증 자료, 첨부 디렉터리는 제공하지 않는다. 지도 HTML은 실제 도로 SVG·구역·문제 단서 사진·위치 처리 코드를 내장한다. 게임 HTML에는 검토한 문제 사진과 정답 확인용 사진을 내장한다. 각 HTML은 그림·데이터·코드를 포함해 파일로도 열 수 있지만 현재 위치 기능은 HTTPS와 사용자 권한이 필요하다.
 
 제출 백업으로 작동 화면 녹화/캡처와 소스를 준비한다. 현장 휴대전화에서 재생 가능한지 확인한다. Drive 보관과 웹 공개는 별개다.
 
