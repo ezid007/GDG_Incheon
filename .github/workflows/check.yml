@@ -1,0 +1,31 @@
+name: Check Golmok Detective
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/golmok-detective/**'
+      - '.github/workflows/check.yml'
+  pull_request:
+    paths:
+      - 'apps/golmok-detective/**'
+      - '.github/workflows/check.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Build pages
+        run: node apps/golmok-detective/build.mjs
+      - name: Test game and build contracts
+        run: node --test apps/golmok-detective/tests/*.test.mjs

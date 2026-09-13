@@ -16,14 +16,18 @@ async function verifyImageExists(publicPath) {
 }
 
 export async function loadMissionData() {
-  const rawData = JSON.parse(await readFile(join(root, 'data/quiz-support.json'), 'utf8'));
+  const rawData = JSON.parse(
+    await readFile(join(root, 'data/quiz-support.json'), 'utf8'),
+  );
   const support = QuizSupportData.validate(rawData);
 
   const fieldMissions = [];
   for (const review of support.reviews) {
     const mission = {
       ...review,
-      answerId: review.options.find(opt => opt.label === review.expectedAnswer)?.id,
+      answerId: review.options.find(
+        (opt) => opt.label === review.expectedAnswer,
+      )?.id,
     };
     delete mission.quizKey;
     delete mission.expectedAnswer;
@@ -36,8 +40,20 @@ export async function loadMissionData() {
   }
 
   // Keep the loader's plain-data contract across schema validation and browser serialization.
-  const data = structuredClone({ version: support.version, title: support.title, missions: [...fieldMissions, ...support.examples] });
+  const data = structuredClone({
+    version: support.version,
+    title: support.title,
+    missions: [...fieldMissions, ...support.examples],
+  });
   validateMissionData(data);
-  await Promise.all(data.missions.flatMap(mission => [mission.image, mission.quizImage, mission.answerImage]).map(verifyImageExists));
+  await Promise.all(
+    data.missions
+      .flatMap((mission) => [
+        mission.image,
+        mission.quizImage,
+        mission.answerImage,
+      ])
+      .map(verifyImageExists),
+  );
   return data;
 }

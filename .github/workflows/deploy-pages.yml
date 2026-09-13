@@ -1,11 +1,7 @@
 name: Deploy Golmok Detective
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'apps/golmok-detective/**'
-      - '.github/workflows/deploy-pages.yml'
+  # Publishing is explicit; source pushes never republish the site.
   workflow_dispatch:
 
 permissions:

@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="ko"
+  ><head
+    ><meta charset="utf-8" /><meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    /><meta name="theme-color" content="#f4f1e8" /><meta
+      name="color-scheme"
+      content="light"
+    /><meta
+      name="description"
+      content="사진 속 작은 단서를 찾는 3분 관찰 게임, 차이나타운 골목탐정."
+    /><title>차이나타운 골목탐정 — 골목을 보는 새로운 눈</title>
+    <link rel="canonical" href="https://ezid007.github.io/GDG_Incheon/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:site_name" content="차이나타운 골목탐정" />
+    <meta property="og:title" content="차이나타운 골목탐정" />
+    <meta
+      property="og:description"
+      content="그림 지도와 사진 단서로 장소를 찾고, 현장에서 4지선다 문제를 푸는 모바일 골목 탐험 게임."
+    />
+    <meta property="og:url" content="https://ezid007.github.io/GDG_Incheon/" />
+    <meta
+      property="og:image"
+      content="https://ezid007.github.io/GDG_Incheon/assets/share-qr-20260913.jpg"
+    />
+    <meta
+      property="og:image:secure_url"
+      content="https://ezid007.github.io/GDG_Incheon/assets/share-qr-20260913.jpg"
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="1280" />
+    <meta
+      property="og:image:alt"
+      content="차이나타운 골목탐정 게임으로 연결되는 QR 코드"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="차이나타운 골목탐정" />
+    <meta
+      name="twitter:description"
+      content="그림 지도와 사진 단서로 장소를 찾고, 현장에서 4지선다 문제를 푸는 모바일 골목 탐험 게임."
+    />
+    <meta
+      name="twitter:image"
+      content="https://ezid007.github.io/GDG_Incheon/assets/share-qr-20260913.jpg"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="차이나타운 골목탐정 게임으로 연결되는 QR 코드"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%2323372e'/%3E%3Ccircle cx='27' cy='27' r='13' stroke='%23f3d875' stroke-width='6' fill='none'/%3E%3Cpath d='m38 38 12 12' stroke='%23f3d875' stroke-width='7'/%3E%3C/svg%3E"
+    />
+    <style>
+      /*__STYLES__*/
+    </style></head
+  ><body
+    ><div class="wrap"
+      ><header class="header"
+        ><div class="brand"
+          ><span class="brand-icon" aria-hidden="true"
+            ><svg viewBox="0 0 24 24">
+              <circle cx="10" cy="10" r="6" />
+              <path d="m14.5 14.5 6 6" /></svg></span
+          ><div
+            >차이나타운 골목탐정<small>GOLMOK DETECTIVE · INCHEON</small></div
+          ></div
+        ><button class="quiet" id="share-top" type="button"
+          >링크 공유 ↗</button
+        ></header
+      ><div class="edition"
+        ><span class="example"
+          ><i class="dot" aria-hidden="true"></i
+          ><strong id="mode-label">예시 탐험</strong
+          ><span id="mode-caption">가상 장면으로 먼저 만나보세요</span></span
+        ><span class="edition-code">FIELD NOTES / 2026</span></div
+      ><p class="storage-note" id="storage-warning" role="status" hidden
+        >이 브라우저에서는 진행 상황을 저장할 수 없어요. 계속 플레이할 수 있지만
+        새로고침하면 처음부터 시작할 수 있어요.</p
+      >
+      <p class="small-note" id="intro-return" hidden
+        ><a href="./">← 게임 소개 · 진행 방법</a></p
+      >
+      <aside
+        class="demo-banner"
+        id="demo-banner"
+        aria-label="도착 시연 모드"
+        hidden
+        ><strong id="demo-title">시연 모드</strong
+        ><p
+          >현장에 가지 않고 도착을 가정한 체험이에요. 실제 방문이나 일반 플레이
+          기록에 반영되지 않아요.</p
+        ><nav class="demo-links" aria-label="시연 탐색"
+          ><a data-map-link href="./map.html">탐색 지도로 돌아가기 →</a
+          ><a href="./">일반 게임으로 나가기</a></nav
+        ></aside
+      >
+      <main
+        ><section
+          class="unavailable"
+          id="unavailable-screen"
+          aria-labelledby="unavailable-heading"
+          hidden
+          ><h1 id="unavailable-heading">이 문제가<br />준비 중이에요.</h1
+          ><p
+            >선택한 문제를 찾을 수 없어요. 지도에서 문제 목록을 확인해
+            주세요.</p
+          ><a data-map-link href="./map.html"
+            >탐색 지도로 돌아가기 →</a
+          ></section
+        ><section id="start-screen" aria-labelledby="start-heading"
+          ><div class="hero"
+            ><div
+              ><p class="eyebrow">작은 단서, 새로운 발견</p
+              ><h1 id="start-heading"
+                >골목을 보는 눈,<br /><em>조금 더 가까이.</em></h1
+              ><p class="hero-description"
+                >익숙한 풍경에도 단서는 숨어 있어요.<br />사진 속 작은 특징을
+                찾고,<br />오늘의 골목탐정이 되어보세요.</p
+              ><div class="hero-facts"
+                ><span><b>◷</b> 약 3분</span
+                ><span><b>◇</b> <span id="total-start">3</span>개의 발견</span
+                ><span><b>✓</b> 가입 없이 바로</span></div
+              ><button class="primary" id="start-button" type="button"
+                ><span>탐정 시작하기</span
+                ><span class="arrow" aria-hidden="true">→</span></button
+              ><p class="small-note"
+                >휴대전화로도, PC로도. 어디서든 탐험할 수 있어요.</p
+              ><p class="small-note"
+                ><a data-map-link href="./map.html">현장 탐색 지도 보기 →</a></p
+              ></div
+            ><figure class="postcard"
+              ><div class="postcard-top"
+                ><span>OBSERVATION NOTE · 01</span
+                ><span>눈을 크게 뜨고!</span></div
+              ><img
+                id="cover-image"
+                alt="골목 관찰 게임의 예시 장면"
+                width="640"
+                height="400"
+              /><div class="sticker" aria-hidden="true"
+                ><svg viewBox="0 0 64 64">
+                  <circle cx="27" cy="26" r="16" />
+                  <path
+                    d="m38 39 15 15m-33-28 5 5 10-11"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg></div
+              ><figcaption class="postcard-bottom"
+                ><div
+                  ><strong
+                    >그냥 지나치기엔,<br />재미있는 구석이 많으니까.</strong
+                  ><p id="cover-caption">설명용 가상 골목 일러스트</p></div
+                ><div class="stamp" aria-hidden="true"
+                  >오늘의<br />발견 수집</div
+                ></figcaption
+              ></figure
+            ></div
+          ><div class="how"
+            ><div
+              ><span class="number">01</span
+              ><div
+                ><strong>장면을 보고</strong
+                ><p>사진 속 작은 특징을<br />찬찬히 살펴보세요.</p></div
+              ></div
+            ><div
+              ><span class="number">02</span
+              ><div
+                ><strong>단서를 찾고</strong
+                ><p>질문에 답해보세요.<br />막히면 힌트를 펼쳐요.</p></div
+              ></div
+            ><div
+              ><span class="number">03</span
+              ><div
+                ><strong>발견을 모아요</strong
+                ><p>정답의 근거를 확인하고<br />다음 단서로 출발!</p></div
+              ></div
+            ></div
+          ><p class="disclaimer" id="sample-notice"
+            >현재 미션은 가상 그림을 활용한 예시입니다. 실제 인천의
+            장소·역사·방향을 안내하지 않습니다. 현장 사진과 관찰 기록을 확보한
+            뒤 실제 탐험으로 업데이트할 예정입니다.</p
+          ></section
+        >
+        <section id="game-screen" aria-labelledby="mission-heading" hidden
+          ><header class="game-header"
+            ><div class="game-heading"
+              ><span class="big-number" id="mission-number">01</span
+              ><div
+                ><h2 id="mission-heading" tabindex="-1"
+                  >첫 번째 단서를 찾아요</h2
+                ><p id="mission-location"></p></div></div
+            ><div
+              ><div class="progress" id="progress-bars" aria-hidden="true"></div
+              ><p class="progress-label" id="progress-label">발견 0 / 3</p></div
+            ></header
+          ><div class="game-grid"
+            ><figure class="scene-card"
+              ><header
+                ><span id="scene-kind">예시 관찰 장면</span
+                ><span id="scene-count">SCENE 01 / 03</span></header
+              ><div class="scene" id="scene-container"
+                ><img id="mission-image" alt="" width="640" height="400" /><span
+                  class="scene-mark"
+                  id="evidence-mark"
+                  hidden
+                  aria-hidden="true"
+                ></span></div
+              ><figcaption class="scene-caption"
+                ><span id="photo-caption">화면 속 작은 단서를 찾아보세요</span
+                ><button
+                  class="zoom"
+                  id="zoom-button"
+                  type="button"
+                  aria-haspopup="dialog"
+                  >크게 보기 ⤢</button
+                ></figcaption
+              ><p class="observation"
+                >눈에 보이는 모양, 작은 표식, 방향.<br />정답은 항상 장면 안에
+                있어요.</p
+              ></figure
+            ><div class="question-card"
+              ><p class="question-kicker" id="question-kicker">MISSION 01</p
+              ><h2 id="question"></h2
+              ><p class="question-sub"
+                >하나를 고른 뒤 ‘정답 확인’을 눌러주세요.</p
+              ><div
+                class="options"
+                id="options"
+                role="group"
+                aria-labelledby="question"
+              ></div
+              ><button
+                class="hint-button"
+                id="hint-button"
+                aria-expanded="false"
+                aria-controls="hint-box"
+                type="button"
+                >힌트가 필요해요 +</button
+              ><p class="hint-box" id="hint-box" hidden></p
+              ><div
+                class="feedback"
+                id="feedback"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+                hidden
+                ><h3 id="feedback-title"></h3><p id="feedback-copy"></p></div
+              ><div class="game-action"
+                ><button
+                  class="primary"
+                  id="check-button"
+                  type="button"
+                  disabled
+                  ><span>정답 확인</span
+                  ><span aria-hidden="true">✓</span></button
+                ><button class="primary" id="next-button" type="button" hidden
+                  ><span id="next-label">다음 단서 찾기</span
+                  ><span class="arrow" aria-hidden="true">→</span></button
+                ></div
+              ></div
+            ></div
+          ><p class="small-note" id="game-map-return" hidden
+            ><a data-map-link href="./map.html"
+              >← 1차 퀴즈 · 탐색 지도로 돌아가기</a
+            ></p
+          ><div class="game-under"
+            ><span>같은 탭에서는 새로고침해도 이어서 플레이할 수 있어요.</span
+            ><button class="link-button" id="restart-game" type="button"
+              >처음부터 다시</button
+            ></div
+          ></section
+        >
+        <section
+          class="finished"
+          id="complete-screen"
+          aria-labelledby="complete-heading"
+          hidden
+          ><div class="award" aria-hidden="true"
+            ><svg viewBox="0 0 90 90">
+              <path d="m25 59-5 24 24-11 23 11-5-24" />
+              <circle cx="44" cy="35" r="29" />
+              <circle cx="42" cy="33" r="13" />
+              <path
+                d="m52 43 11 10M36 32l5 5 8-9"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              /></svg></div
+          ><p class="eyebrow">관찰 완료 · 오늘의 골목탐정</p
+          ><h1 id="complete-heading" tabindex="-1"
+            >작은 발견을<br />모두 모았어요!</h1
+          ><p class="summary"
+            ><strong id="completed-count">3개의 단서</strong>를 발견했어요.<br />다음
+            골목에서는 무엇이 눈에 들어올까요?</p
+          ><div class="findings" id="findings"></div
+          ><div class="end-actions"
+            ><a id="next-quiz-link" class="primary" href="./map.html" hidden
+              >문제 목록으로 →</a
+            ><button class="primary" id="play-again" type="button"
+              ><span>다시 탐험하기</span
+              ><span aria-hidden="true">↻</span></button
+            ><button class="quiet" id="share-end" type="button"
+              >친구에게 링크 공유</button
+            ></div
+          ><p class="small-note" id="completion-notice"
+            >예시 장면으로 완료한 탐험이에요. 실제 현장 방문 인증은 아닙니다.</p
+          ></section
+        ><noscript
+          ><div class="no-script"
+            >골목탐정은 JavaScript를 켠 브라우저에서 플레이할 수 있어요.
+            브라우저 설정을 확인한 뒤 다시 열어주세요.</div
+          ></noscript
+        ><div class="fatal" id="fatal" hidden
+          ><h2>탐험 자료를 불러오지 못했어요.</h2
+          ><p>페이지를 새로고침하거나 잠시 후 다시 열어주세요.</p></div
+        ></main
+      ><footer class="footer"
+        ><div
+          ><strong>골목탐정</strong
+          ><span>작은 발견이, 오늘의 이야기가 되도록.</span></div
+        ><div class="footer-right"
+          >Agent Field Trip 2026 · Incheon<br /><span id="footer-mode"
+            >현장형 해커톤 · 예시 버전</span
+          ></div
+        ></footer
+      ></div
+    >
+    <dialog class="modal" id="image-dialog" aria-labelledby="image-dialog-title"
+      ><div class="modal-head"
+        ><h2 id="image-dialog-title">장면을 더 자세히</h2
+        ><button
+          class="close"
+          data-close="image-dialog"
+          type="button"
+          aria-label="확대 이미지 닫기"
+          >×</button
+        ></div
+      ><img id="large-image" alt="" /><p id="large-caption"></p></dialog
+    ><dialog class="modal" id="share-dialog" aria-labelledby="share-title"
+      ><div class="modal-head"
+        ><h2 id="share-title">같이 단서를 찾아볼까요?</h2
+        ><button
+          class="close"
+          data-close="share-dialog"
+          type="button"
+          aria-label="공유 창 닫기"
+          >×</button
+        ></div
+      ><p>QR 코드를 스캔하거나 아래 주소를 복사해 친구에게 보내주세요.</p
+      ><figure class="share-qr"
+        ><img
+          id="share-qr-image"
+          src="assets/share-qr-20260913.jpg"
+          width="1280"
+          height="1280"
+          alt="차이나타운 골목탐정 게임에 접속하는 QR 코드"
+        /><figcaption
+          >휴대전화 카메라로 QR 코드를 비춰보세요.</figcaption
+        ></figure
+      ><label class="sr-only" for="share-url">게임 접속 주소</label
+      ><input id="share-url" type="text" readonly /><div class="modal-actions"
+        ><button class="primary" type="button" id="copy-url"
+          >주소 복사하기</button
+        ></div
+      ><p id="copy-result" role="status" aria-live="polite"></p></dialog
+    ><dialog class="modal" id="restart-dialog" aria-labelledby="restart-title"
+      ><div class="modal-head"
+        ><h2 id="restart-title">새롭게 시작할까요?</h2
+        ><button
+          class="close"
+          data-close="restart-dialog"
+          type="button"
+          aria-label="다시 시작 취소"
+          >×</button
+        ></div
+      ><p>지금까지 찾은 단서가 초기화되고 시작 화면으로 돌아갑니다.</p
+      ><div class="modal-actions"
+        ><button class="quiet" data-close="restart-dialog" type="button"
+          >계속 탐험하기</button
+        ><button class="primary" id="confirm-restart" type="button"
+          >처음부터 시작</button
+        ></div
+      ></dialog
+    ><div
+      class="toast"
+      id="toast"
+      role="status"
+      aria-live="polite"
+      hidden
+    ></div>
+    <script id="mission-data" type="application/json">
+      /*__DATA__*/
+    </script>
+    <script>
+      /*__SCRIPT__*/
+    </script></body
+  ></html
+>

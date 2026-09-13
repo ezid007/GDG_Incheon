@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" /><meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#f4f1e8" /><meta
+      name="color-scheme"
+      content="light"
+    />
+    <meta
+      name="description"
+      content="문제별 장소 찾기 사진을 아래로 넘겨 보고 실제 골목을 찾아보세요."
+    />
+    <title>골목 탐색 지도 — 차이나타운 골목탐정</title>
+    <link
+      rel="canonical"
+      href="https://ezid007.github.io/GDG_Incheon/map.html"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:site_name" content="차이나타운 골목탐정" />
+    <meta
+      property="og:title"
+      content="문제 목록과 지도 — 차이나타운 골목탐정"
+    />
+    <meta
+      property="og:description"
+      content="사진 단서와 그림 지도를 따라 세 곳의 장소를 찾아보고, 도착하면 현장 퀴즈에 도전하세요."
+    />
+    <meta
+      property="og:url"
+      content="https://ezid007.github.io/GDG_Incheon/map.html"
+    />
+    <meta
+      property="og:image"
+      content="https://ezid007.github.io/GDG_Incheon/assets/share-qr-20260913.jpg"
+    />
+    <meta
+      property="og:image:secure_url"
+      content="https://ezid007.github.io/GDG_Incheon/assets/share-qr-20260913.jpg"
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="1280" />
+    <meta
+      property="og:image:alt"
+      content="차이나타운 골목탐정 게임으로 연결되는 QR 코드"
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="문제 목록과 지도 — 차이나타운 골목탐정"
+    />
+    <meta
+      name="twitter:description"
+      content="사진 단서와 그림 지도를 따라 세 곳의 장소를 찾아보고, 도착하면 현장 퀴즈에 도전하세요."
+    />
+    <meta
+      name="twitter:image"
+      content="https://ezid007.github.io/GDG_Incheon/assets/share-qr-20260913.jpg"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="차이나타운 골목탐정 게임으로 연결되는 QR 코드"
+    />
+
+    <style>
+      /*__STYLES__*/
+    </style>
+  </head>
+  <body
+    ><div class="wrap">
+      <header class="masthead"
+        ><div class="brand"
+          >차이나타운 골목탐정<small>GOLMOK DETECTIVE · INCHEON</small></div
+        ><a class="back" href="./">← 게임 소개</a></header
+      >
+      <div class="heading"
+        ><div
+          ><p class="eyebrow">1차 퀴즈 · 힌트로 장소 찾기</p
+          ><h1>이 근처에서,<br /><em>찾아보세요.</em></h1
+          ><p class="intro"
+            >아래로 넘기며 각 문제의 장소 찾기 사진을 살펴보세요.<br />장소를
+            찾았다면 그 문제의 2차 퀴즈에 도전해요.</p
+          ></div
+        ><div class="edition"
+          >Explore<small>하나의 지도, 여러 개의 발견</small></div
+        ></div
+      >
+      <noscript
+        ><p class="no-script"
+          >장소 찾기 사진과 퀴즈 링크는 이용할 수 있어요. 지도 범위 선택과 현재
+          위치 확인에는 JavaScript가 필요해요.</p
+        ></noscript
+      >
+      <main class="layout">
+        <p id="quiz-warning" class="quiz-warning" role="status" hidden></p>
+        <section
+          id="quiz-list"
+          class="quiz-list"
+          aria-label="1차 장소 찾기 문제 목록"
+          ><!--__QUIZ_CARDS__--></section
+        >
+        <section id="shared-map" class="map-card" aria-label="문제별 탐색 지도">
+          <header class="shared-map-heading"
+            ><p class="panel-label">공유 탐색 지도</p
+            ><h2 id="map-question-title">탐색 지도</h2
+            ><p id="map-question-description"
+              >문제의 지도 보기 버튼으로 탐색 범위를 확인해요.</p
+            ></header
+          >
+          <div class="map-toolbar"
+            ><strong>손가락으로 지도를 움직여요</strong
+            ><div class="controls"
+              ><button
+                class="control symbol"
+                id="zoom-out"
+                aria-label="지도 축소"
+                type="button"
+                >−</button
+              ><button
+                class="control symbol"
+                id="zoom-in"
+                aria-label="지도 확대"
+                type="button"
+                >+</button
+              ><button class="control" id="fit" type="button">전체</button></div
+            ></div
+          >
+          <div
+            id="map-scroll"
+            class="map-scroll"
+            tabindex="0"
+            aria-label="확대 가능한 지도. 방향키나 손가락으로 이동할 수 있습니다."
+            ><div id="map-canvas" class="map-canvas"
+              ><!--__MAP_SVG__--></div
+            ></div
+          >
+          <div class="map-caption"
+            ><span class="key"><i></i>이 문제의 탐색 범위</span
+            ><span class="key"><i class="blue"></i>내 위치·오차 범위</span
+            ><span class="key"><i class="road-key"></i>주변 길</span></div
+          >
+          <section class="location-panel" aria-label="내 위치 확인"
+            ><button id="locate" class="location-button" type="button"
+              >내 위치 확인<span aria-hidden="true">◎</span></button
+            ><p
+              id="location-status"
+              class="location-status"
+              role="status"
+              aria-live="polite"
+              >휴대전화에서 이 페이지를 열고 눌러 주세요. 위치 접근을 허용하면
+              현재 위치를 한 번 확인해요.</p
+            ><p class="privacy"
+              >위치는 저장하거나 서버로 보내지 않아요. 이동한 뒤 버튼을 다시
+              눌러 주세요.</p
+            ></section
+          >
+          <p class="map-help"
+            >색칠된 범위에서 해당 문제의 장소를 찾아보세요. 길이 막혔거나 출입이
+            제한된 곳은 현장 안내를 따라 주세요.</p
+          >
+        </section>
+      </main>
+      <footer class="source"
+        ><span
+          >실제 도로를 바탕으로 단순화한 지도 · 북쪽이 위 · 길찾기 경로·도착
+          인증 없음</span
+        ><span
+          >©
+          <a
+            href="https://www.openstreetmap.org/copyright"
+            target="_blank"
+            rel="noopener noreferrer"
+            >OpenStreetMap contributors</a
+          >
+          ·
+          <a
+            href="https://itour.incheon.go.kr/ssst/ssst/detail.do?cotId=ITD22012113593866643"
+            target="_blank"
+            rel="noopener noreferrer"
+            >인천투어</a
+          ></span
+        ></footer
+      >
+    </div>
+    <script>
+      /*__SCRIPT__*/
+    </script></body
+  ></html
+>

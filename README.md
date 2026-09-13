@@ -41,14 +41,19 @@ node apps/golmok-detective/serve.mjs
 
 ## 문제 작성과 파일 구조
 
+- 화면 구조는 `src/pages/`, 스타일은 `src/styles/`, 화면 동작은 `src/scripts/`에서 게임(`game`)과 지도(`map`)별로 수정합니다.
+- 게임 상태·시연 모드·위치 계산은 앱 루트의 독립 모듈로 유지합니다. `build-page.mjs`가 분리된 화면 소스를 조립하고 누락된 삽입 자리를 검사합니다.
 - 문제·선택지·검수 정보: `apps/golmok-detective/data/quiz-support.json` 하나에서 관리합니다. 이전 `quiz.js`는 사용하지 않습니다.
 - 사진: `apps/golmok-detective/public/assets/quiz/gate/`, `pinocchio/`, `taletown/`에 있습니다. 중복 원본 폴더는 다시 만들지 않습니다.
 - `image`는 장소 찾기, `quizImage`는 도착 후 질문, `answerImage`는 정답 확인 후 사진입니다.
 - 실제 문제의 `expectedAnswer`는 네 보기 중 정확히 하나의 `label`과 일치해야 합니다. 로더가 이를 `answerId`로 변환합니다.
 - `quiz-schema.mjs`는 입력을 검증하고, `load-quiz.mjs`는 기존 호환성을 위해 일반 객체를 반환합니다. JSON Schema와 `types.d.ts`는 작성·개발을 돕습니다.
 - 생성된 `public/index.html`, `public/map.html`은 직접 고치지 않고 템플릿·데이터 수정 후 빌드합니다. 사진과 지도는 HTML에 내장됩니다.
+- 사용하지 않는 이전 사진은 `reference/unused-photos/`에 보존합니다. 이 폴더는 공개 배포물에 포함되지 않습니다.
 
-[문제 작성 양식](docs/mission-authoring.md) · [미션 검수 기록](docs/field-missions.md) · [구현 안내](docs/implementation.md) · [실행·배포 안내](docs/deployment.md)
+[문서 길잡이](docs/README.md) · [다음 작업 방식](docs/development-workflow.md) · [이번 정리 내역](docs/cleanup-2026-09-13.md)
+
+현재 작업 계획은 루트 `PLAN.md` 하나에서 관리합니다. 현재 설명은 `docs/`, 과거 작업 기록은 `docs/archive/`, 개인 준비 자료는 로컬 `docs/private/`에 구분합니다. 원격 첨부·환경 변수·로그·임시 결과는 공유 파일에 포함하지 않습니다.
 
 ## 검증
 
