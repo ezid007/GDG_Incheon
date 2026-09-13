@@ -1,5 +1,6 @@
 {
-  "version": "scroll-pinocchio-v1",
+  "$schema": "./quiz-support.schema.json",
+  "version": "unified-three-missions-v1",
   "title": "차이나타운 골목탐정",
   "reviews": [
     {
@@ -8,8 +9,8 @@
       "sceneKind": "field",
       "explorationRegionId": "chinatown",
       "placeLabel": "차이나타운의 황금빛 관문",
-      "image": "assets/field-gate-detail.jpg",
-      "quizImage": "assets/field-gate-quiz.jpg",
+      "image": "assets/quiz/gate/field-gate-detail.jpg",
+      "quizImage": "assets/quiz/gate/field-gate-quiz.jpg",
       "quizImageAlt": "황금빛 관문 전체 모습. 가운데 현판 글자만 물음표로 가려져 있습니다. 현장에서 가려진 부분을 확인하세요.",
       "imageAlt": "흐린 하늘 아래 금빛 기둥 위에 앉은 조각상. 몸통에는 비늘 무늬가 있고 주변에는 구름처럼 굽은 장식이 보입니다.",
       "hint": "조각상 아래쪽으로 시선을 내려 문 중앙의 가로로 긴 현판을 살펴보세요.",
@@ -19,10 +20,18 @@
         "x": 48.5,
         "y": 44.5
       },
-      "answerImage": "assets/field-gate-answer.jpg",
+      "answerImage": "assets/quiz/gate/field-gate-answer.jpg",
       "answerImageAlt": "황금빛 관문 전체 사진. 가운데 가로로 긴 회색 현판에 붉은 글씨로 仁華門이라고 적혀 있습니다.",
       "quizKey": "inhwamun",
-      "expectedAnswer": "仁華門"
+      "expectedAnswer": "仁華門",
+      "question": "다음 사진 속 황금빛 패루(牌樓)에 가려진 한자 현판에 적힌 글자는 무엇일까요?",
+      "options": [
+        {"id": "a", "label": "仁華門"},
+        {"id": "b", "label": "中華門"},
+        {"id": "c", "label": "華僑門"},
+        {"id": "d", "label": "仁川門"}
+      ],
+      "geoCoordinates": {"latitude": 37.473045, "longitude": 126.6188592}
     },
     {
       "id": "pinocchio-clouds",
@@ -32,17 +41,53 @@
       "explorationRegionId": "songwol",
       "explorationDescription": "이 근처에서 사진 속 피노키오가 있는 장소를 찾아보세요. 분홍 하트와 주변 조형물을 살펴보고 같은 장소인지 확인해요.",
       "placeLabel": "동화 속 작은 무대",
-      "image": "assets/field-pinocchio-clue.jpg",
+      "image": "assets/quiz/pinocchio/field-pinocchio-clue.jpg",
       "imageAlt": "분홍 하트 옆 피노키오와 사슴 조형물을 가까이 찍은 장소 찾기 사진. 피노키오 뒤 흰 벽은 일부만 보입니다.",
-      "quizImage": "assets/field-pinocchio-quiz.jpg",
+      "quizImage": "assets/quiz/pinocchio/field-pinocchio-quiz.jpg",
       "quizImageAlt": "피노키오 뒤 흰 벽에 그려진 파란 구름 모양 무늬 하나의 확대 사진. 이 모양을 기준으로 현장 벽에 있는 파란색 계열 무늬의 개수를 세어 보세요.",
-      "answerImage": "assets/field-pinocchio-answer.jpg",
+      "answerImage": "assets/quiz/pinocchio/field-pinocchio-answer.jpg",
       "answerImageAlt": "피노키오 옆에서 뒤쪽 흰 벽을 가까이 찍은 정답 사진. 팔 뒤 작은 파란 무늬 2개, 배관 뒤 큰 무늬 1개, 위쪽 옅은 하늘색 1개, 지붕 아래 파란 무늬 1개가 보입니다. 분홍색 무늬는 세지 않습니다.",
       "hint": "사진 단서와 같은 파란색 계열 무늬만 세어 보세요. 피노키오 팔 뒤쪽과 벽 위쪽도 살펴보고, 옅은 하늘색을 놓치지 마세요. 갈라진 꼬리선이 아니라 무늬 한 덩어리를 1개로 세어요.",
       "explanation": "파란색 계열 무늬는 모두 5개예요. 팔 뒤 작은 무늬 2개 + 배관 뒤 큰 무늬 1개 + 위쪽의 옅은 하늘색 1개 + 지붕 아래 1개예요. 분홍색 무늬는 포함하지 않아요.",
       "evidenceQuote": "정답 사진에서 흰 벽의 파란색 계열 무늬만 세면 작은 것 2개, 배관 뒤 1개, 옅은 하늘색 1개, 지붕 아래 1개로 총 5개입니다.",
       "evidence": { "x": 49.5, "y": 51.5 },
-      "expectedAnswer": "5개"
+      "expectedAnswer": "5개",
+      "question": "피노키오 뒤 흰 벽에 그려진 파란색 구름 모양 무늬는 모두 몇 개일까요? 옅은 하늘색도 포함해 주세요.",
+      "options": [
+        {"id": "a", "label": "3개"},
+        {"id": "b", "label": "4개"},
+        {"id": "c", "label": "5개"},
+        {"id": "d", "label": "6개"}
+      ]
+    },
+    {
+      "id": "taletown-mural",
+      "sourceId": "TEAM-TALETOWN-1",
+      "sceneKind": "field",
+      "explorationRegionId": "songwol",
+      "explorationDescription": "이 근처에서 사진 속 양철 나무꾼 조형물을 찾아보세요. 같은 장소를 찾았다면 조형물 옆 벽화를 살펴봐요.",
+      "placeLabel": "송월동 동화마을의 하늘 나는 벽화",
+      "image": "assets/quiz/taletown/field-taletown-clue.jpg",
+      "quizImage": "assets/quiz/taletown/field-taletown-quiz.jpg",
+      "quizImageAlt": "파란 지붕의 성 모양 건물과 오른쪽 아래 양철 나무꾼 조형물이 보이는 주변 전경. 질문의 답은 현장에서 조형물 옆 벽화를 살펴 확인하세요.",
+      "imageAlt": "도끼를 든 양철 나무꾼 조형물의 근접 사진. 뒤에는 소녀와 나무가 그려진 벽과 성 모양 건물 일부가 보입니다.",
+      "hint": "벽화 속 하늘에 떠 있는 물건들을 하나씩 세어 보세요. 그려지지 않은 물건이 정답이에요.",
+      "explanation": "송월동 동화마을의 벽화에는 의자, 서랍, 우산이 하늘을 나는 모습이 그려져 있어요. 가방은 날아다니는 물건에 포함되지 않아요.",
+      "evidenceQuote": "출제자가 확인한 정답은 가방입니다. 제공된 성 외관 사진은 주변 위치 참고용이며 벽화 전체의 정답 근거 사진은 별도로 제공되지 않았습니다.",
+      "evidence": {
+        "x": 50,
+        "y": 40
+      },
+      "quizKey": "tale-town-1",
+      "expectedAnswer": "가방",
+      "question": "사진 속 조형물 옆 벽화에서 하늘에 날아다니는 물건이 아닌 것은?",
+      "options": [
+        {"id": "a", "label": "의자"},
+        {"id": "b", "label": "서랍"},
+        {"id": "c", "label": "우산"},
+        {"id": "d", "label": "가방"}
+      ],
+      "geoCoordinates": {"latitude": 37.477661, "longitude": 126.620583}
     }
   ],
   "examples": [

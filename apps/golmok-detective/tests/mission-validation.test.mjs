@@ -3,8 +3,11 @@ import { loadMissionData } from '../load-quiz.mjs';
 import { test } from 'node:test';
 import { validateMissionData } from '../mission-validation.mjs';
 import { initialState, restoreState, transition } from '../game-state.mjs';
+import { readFile } from 'node:fs/promises';
+import { QuizSupportData } from '../data/quiz-schema.mjs';
 
 const examples = await loadMissionData();
+const sourceData = JSON.parse(await readFile(new URL('../data/quiz-support.json', import.meta.url), 'utf8'));
 const fieldData = () => {
   const mission = structuredClone(examples.missions[0]);
   mission.sceneKind = 'field';
@@ -25,6 +28,37 @@ test('existing examples and four-choice field missions validate without mutation
     assert.doesNotThrow(() => validateMissionData(data));
     assert.deepEqual(data, before);
   }
+});
+
+test('the merged field list preserves photo stages, reviewed answers and plain data', () => {
+  const fields = examples.missions.filter(mission => mission.sceneKind === 'field');
+  assert.deepEqual(fields.map(mission => mission.id), ['inhwamun-plaque', 'pinocchio-clouds', 'taletown-mural']);
+  assert.deepEqual(fields.map(mission => mission.options.find(option => option.id === mission.answerId).label), ['仁華門', '5개', '가방']);
+  assert.equal(fields[1].image, 'assets/quiz/pinocchio/field-pinocchio-clue.jpg');
+  assert.equal(fields[1].quizImage, 'assets/quiz/pinocchio/field-pinocchio-quiz.jpg');
+  assert.equal(fields[1].answerImage, 'assets/quiz/pinocchio/field-pinocchio-answer.jpg');
+  assert.ok(fields[2].explorationDescription.trim());
+  assert.doesNotMatch(fields[2].explorationDescription, /준비 중/);
+  assert.notEqual(fields[2].image, fields[2].quizImage);
+  assert.deepEqual(examples, structuredClone(examples));
+  assert.ok(fields.every(mission => !Object.hasOwn(mission, 'expectedAnswer') && !Object.hasOwn(mission, 'quizKey')));
+});
+
+test('schema validation rejects invalid image paths, ambiguous answers and duplicate review keys', () => {
+  for (const key of ['image', 'quizImage', 'answerImage']) {
+    const data = structuredClone(sourceData);
+    data.reviews[0][key] = 'assets/../private.jpg';
+    assert.throws(() => QuizSupportData.validate(data), /Invalid .*path/);
+  }
+  for (const answer of ['missing', sourceData.reviews[0].expectedAnswer]) {
+    const data = structuredClone(sourceData);
+    data.reviews[0].expectedAnswer = answer;
+    data.reviews[0].options[1].label = data.reviews[0].options[0].label;
+    assert.throws(() => QuizSupportData.validate(data), /exactly one reviewed answer/);
+  }
+  const data = structuredClone(sourceData);
+  data.reviews[1].quizKey = data.reviews[0].quizKey;
+  assert.throws(() => QuizSupportData.validate(data), /Duplicate quiz key/);
 });
 
 test('field missions reject three or five choices, and examples retain three choices', () => {

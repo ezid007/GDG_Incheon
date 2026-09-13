@@ -1,0 +1,292 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Quiz Support Data",
+  "type": "object",
+  "required": [
+    "version",
+    "title",
+    "reviews",
+    "examples"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviews": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/fieldQuiz"
+      }
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/exampleQuiz"
+      }
+    }
+  },
+  "definitions": {
+    "quizOption": {
+      "type": "object",
+      "required": [
+        "id",
+        "label"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-d]$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "x",
+        "y"
+      ],
+      "properties": {
+        "x": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "y": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    },
+    "geoCoordinates": {
+      "type": "object",
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "longitude": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        }
+      }
+    },
+    "fieldQuiz": {
+      "type": "object",
+      "required": [
+        "id",
+        "sourceId",
+        "sceneKind",
+        "explorationRegionId",
+        "placeLabel",
+        "image",
+        "imageAlt",
+        "hint",
+        "explanation",
+        "evidenceQuote",
+        "evidence",
+        "quizKey",
+        "expectedAnswer",
+        "question",
+        "options"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "sourceId": {
+          "type": "string",
+          "pattern": "^[A-Z0-9_-]+$"
+        },
+        "sceneKind": {
+          "const": "field"
+        },
+        "explorationRegionId": {
+          "enum": [
+            "chinatown",
+            "songwol"
+          ]
+        },
+        "explorationDescription": {
+          "type": "string"
+        },
+        "explorationArea": {
+          "type": "object",
+          "required": [
+            "latitude",
+            "longitude",
+            "radiusMeters"
+          ],
+          "properties": {
+            "latitude": {
+              "type": "number"
+            },
+            "longitude": {
+              "type": "number"
+            },
+            "radiusMeters": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "placeLabel": {
+          "type": "string",
+          "minLength": 1
+        },
+        "image": {
+          "type": "string",
+          "pattern": "^assets/(?:[a-z0-9-]+/)*[a-z0-9-]+\\.(svg|jpg|jpeg|png|webp)$"
+        },
+        "imageAlt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "quizImage": {
+          "type": "string",
+          "pattern": "^assets/(?:[a-z0-9-]+/)*[a-z0-9-]+\\.(svg|jpg|jpeg|png|webp)$"
+        },
+        "quizImageAlt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "answerImage": {
+          "type": "string",
+          "pattern": "^assets/(?:[a-z0-9-]+/)*[a-z0-9-]+\\.(svg|jpg|jpeg|png|webp)$"
+        },
+        "answerImageAlt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hint": {
+          "type": "string",
+          "minLength": 1
+        },
+        "explanation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidenceQuote": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "$ref": "#/definitions/evidence"
+        },
+        "quizKey": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "expectedAnswer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "options": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "$ref": "#/definitions/quizOption"
+          }
+        },
+        "geoCoordinates": {
+          "$ref": "#/definitions/geoCoordinates"
+        }
+      }
+    },
+    "exampleQuiz": {
+      "type": "object",
+      "required": [
+        "id",
+        "sourceId",
+        "sceneKind",
+        "placeLabel",
+        "image",
+        "imageAlt",
+        "question",
+        "options",
+        "answerId",
+        "hint",
+        "explanation",
+        "evidenceQuote",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "sourceId": {
+          "type": "string",
+          "pattern": "^[A-Z0-9_-]+$"
+        },
+        "sceneKind": {
+          "const": "example"
+        },
+        "placeLabel": {
+          "type": "string",
+          "minLength": 1
+        },
+        "image": {
+          "type": "string",
+          "pattern": "^assets/(?:[a-z0-9-]+/)*[a-z0-9-]+\\.(svg|jpg|jpeg|png|webp)$"
+        },
+        "imageAlt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "options": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/definitions/quizOption"
+          }
+        },
+        "answerId": {
+          "type": "string",
+          "pattern": "^[a-d]$"
+        },
+        "hint": {
+          "type": "string",
+          "minLength": 1
+        },
+        "explanation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidenceQuote": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "$ref": "#/definitions/evidence"
+        }
+      }
+    }
+  }
+}
