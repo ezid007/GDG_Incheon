@@ -28,7 +28,7 @@
 정답 해설:
 정답 근거와 확인 출처:
 선택: 정답 사진(answerImage), 설명(answerImageAlt), 근거 지점(evidence):
-현장 확인 날짜 및 검수자:
+현장 확인 날짜 및 검수 결과:
 ```
 
 사진은 질문·설명과 실제 내용이 일치해야 합니다. 동화마을처럼 주변 전경만 제공된 경우 벽화 전체를 보여준다고 쓰지 않습니다. 정답 근거 사진이 없으면 현장 관찰과 출제자 확인에 의존한다는 제한을 검수 기록에 남깁니다. 필요 없는 개인정보가 담긴 사진은 그대로 공개하지 않습니다.
@@ -60,6 +60,6 @@ node --test apps/golmok-detective/tests/*.test.mjs
 
 기존 링크 형식: `map.html?quiz=inhwamun-plaque`, `./?play=field&quiz=pinocchio-clouds`, `./?demo=arrival&quiz=taletown-mural`.
 
-이번 병합 빌드 성공, 75개 중 73개 통과. 나머지 2개는 기존 로컬 AdGuard HTTP 간섭입니다. 실제 현장 GPS 및 동화마을 벽화 전체 근거 사진은 별도 확인합니다. 새 패키지·API·환경 변수는 없습니다.
+이번 병합 빌드 성공, 75개 중 73개 통과. 나머지 2개는 기존 로컬 HTTP 응답 필터 HTTP 간섭입니다. 실제 현장 GPS 및 동화마을 벽화 전체 근거 사진은 별도 확인합니다. 새 패키지·API·환경 변수는 없습니다.
 
-근거: [프로젝트 소스](https://github.com/ezid007/GDG_Incheon/tree/main/apps/golmok-detective), [팀원 정답·좌표 확인 기록](work-plans/2026-09-12-tale-town-quiz-merge.md), [현장 검수 기록](field-missions.md).
+근거: [프로젝트 소스](https://github.com/ezid007/GDG_Incheon/tree/main/apps/golmok-detective), [정답·좌표 검수 기록](work-plans/2026-09-12-tale-town-quiz-merge.md), [현장 검수 기록](field-missions.md).

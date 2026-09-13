@@ -53,7 +53,7 @@ node apps/golmok-detective/serve.mjs
 
 [문서 길잡이](docs/README.md) · [다음 작업 방식](docs/development-workflow.md) · [이번 정리 내역](docs/cleanup-2026-09-13.md)
 
-현재 작업 계획은 루트 `PLAN.md` 하나에서 관리합니다. 현재 설명은 `docs/`, 과거 작업 기록은 `docs/archive/`, 개인 준비 자료는 로컬 `docs/private/`에 구분합니다. 원격 첨부·환경 변수·로그·임시 결과는 공유 파일에 포함하지 않습니다.
+현재 작업 계획은 루트 `PLAN.md` 하나에서 관리합니다. 현재 설명은 `docs/`, 이전 기술 기록은 `docs/archive/`에 구분합니다. 문서는 기능·구현·실행·검증 내용으로 한정합니다.
 
 ## 검증
 

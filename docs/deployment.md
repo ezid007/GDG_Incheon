@@ -4,7 +4,7 @@
 
 ## 현재 운영 원칙
 
-사용자 요청으로 전면 정리 기간의 GitHub Pages 게시를 중단하고 배포 워크플로를 비활성화했습니다. `deploy-pages.yml`은 수동 실행만 남겼습니다. **재배포는 사용자가 다시 요청한 뒤 진행합니다.** 실제 활성 여부는 GitHub의 Settings → Pages와 Actions에서 확인합니다.
+전면 정리 기간의 GitHub Pages 게시를 중단하고 배포 워크플로를 비활성화했습니다. `deploy-pages.yml`은 수동 실행만 남겼습니다. **재배포는 별도 실행 절차로 진행합니다.** 실제 활성 여부는 GitHub의 Settings → Pages와 Actions에서 확인합니다.
 
 코드 확인과 공개를 분리합니다.
 
